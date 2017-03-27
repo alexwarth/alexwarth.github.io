@@ -5,7 +5,6 @@
     <link href="demo.css" rel="stylesheet"></link>
   </head>
   <body>
-    <script src="pointerevents.js"></script>
     <script src="relax.min.js"></script>
     <script src="RelaxCanvas.js"></script>
     <script src="Turtle.js"></script>
@@ -102,7 +101,7 @@ setInterval(
 
 var sii = document.getElementById('sii');
 function updateSIILabel() {
-  sii.innerHTML = (rc.showEachIteration ? "don't " : '') + ' render after each iteration';
+  sii.innerHTML = (rc.showEachIteration ? '' : 'not ') + ' rendering after each iteration';
 }
 sii.onclick = function() {
   rc.showEachIteration = !rc.showEachIteration;
