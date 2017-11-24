@@ -1,0 +1,76 @@
+body {
+  background-color: #fcfcfc;
+  font-family: Avenir, Helvetica, Arial;
+  color: #333;
+}
+
+h1 {
+  color: #000;
+}
+
+b {
+  color: #000;
+}
+
+div.header, div.footer {
+  text-align: center;
+}
+
+div.header {
+  margin-bottom: 15px;
+}
+
+div.header > div.links {
+  font-size: 80%;
+}
+
+div.footer {
+  margin-top: 15px;
+}
+
+div.projects {
+  text-align: center;
+}
+
+div.described-block {
+  display: inline-block;
+  position: relative;
+  box-shadow: 2px 2px 6px 1px #aaa;
+}
+
+div.described-block, div.described-block video, div.described-block image {
+  border-radius: 5px;
+}
+
+div.described-block > div.description {
+  z-index: 2000;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+div.described-block > div.description {
+  text-align: left;
+  opacity: 0;
+  transition: opacity .25s;
+  background-color: rgba(50, 50, 50, 0.7);
+  bottom: 0;
+  color: white;
+  font-weight: 200;
+  left: 0;
+  padding: 8px;
+  position: absolute;
+  text-shadow: 0 1px 1px rgb(0, 0, 0);
+  right: 0;
+}
+
+div.described-block:hover > div.description {
+  opacity: 1;
+}
+
+div.described-block:not(:hover) > .imagelink {
+   outline-color: #ccc;
+}
+
+div.described-block > div.description > a {
+  color: inherit;
+}
