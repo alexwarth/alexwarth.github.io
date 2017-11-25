@@ -39,7 +39,7 @@ div.described-block {
   box-shadow: 2px 2px 6px 1px #aaa;
 }
 
-div.described-block, div.described-block video, div.described-block image {
+div.described-block, div.described-block video, div.described-block img {
   border-radius: 5px;
 }
 
