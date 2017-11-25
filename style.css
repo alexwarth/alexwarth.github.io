@@ -34,6 +34,7 @@ div.projects {
 
 div.described-block {
   display: inline-block;
+  margin: 8pt;
   position: relative;
   box-shadow: 2px 2px 6px 1px #aaa;
 }
