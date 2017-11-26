@@ -1,3 +1,6 @@
 [submodule "projects/seymour"]
 	path = projects/seymour
 	url = https://github.com/harc/seymour.git
+[submodule "projects/nl-datalog"]
+	path = projects/nl-datalog
+	url = https://github.com/harc/nl-datalog.git
