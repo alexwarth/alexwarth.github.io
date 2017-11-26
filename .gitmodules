@@ -10,3 +10,6 @@
 [submodule "projects/constraint-based-spreadsheet"]
 	path = projects/constraint-based-spreadsheet
 	url = https://github.com/harc/constraint-based-spreadsheet.git
+[submodule "projects/textPlusPlus"]
+	path = projects/textPlusPlus
+	url = https://github.com/alexwarth/textPlusPlus.git
