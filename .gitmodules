@@ -10,6 +10,3 @@
 [submodule "projects/constraint-based-spreadsheet"]
 	path = projects/constraint-based-spreadsheet
 	url = https://github.com/harc/constraint-based-spreadsheet.git
-#[submodule "projects/ohm"]
-#	path = projects/ohm
-#	url = https://github.com/harc/ohm.git
