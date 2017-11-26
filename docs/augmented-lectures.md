@@ -8,11 +8,9 @@ Alan Kay's criticism of EEs is that the reader should be able to [look under the
 
 Here's an example of what an augmented lecture for perspective drawing / vanishing points might look like:
 
-<video width="360" preload="auto" poster="http://alexwarth.github.io/media/perspective.poster.png" loop onmouseover="this.play()" onmouseout="this.pause()">
+<video width="480" poster="http://alexwarth.github.io/media/perspective.poster.png" controls>
   <source src="http://alexwarth.github.io/media/perspective.mp4" type="video/mp4"/>
 </video>
-
-[video, 3 minutes]
 
 This is just a sketch; in a real augmented lecture, we would want the "rules" (the constraints, in this case) that power the dynamic model to be visible at all times, and they should probably be expressed at a higher level of abstraction. Still, this sketch shows that it is in fact possible for teachers to program models of powerful ideas without breaking the flow of a lecture.
 
