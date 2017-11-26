@@ -4,3 +4,9 @@
 [submodule "projects/nl-datalog"]
 	path = projects/nl-datalog
 	url = https://github.com/harc/nl-datalog.git
+[submodule "projects/relax-overveld"]
+	path = projects/relax-overveld
+	url = https://github.com/harc/relax-overveld.git
+[submodule "projects/constraint-based-spreadsheet"]
+	path = projects/constraint-based-spreadsheet
+	url = https://github.com/harc/constraint-based-spreadsheet.git
