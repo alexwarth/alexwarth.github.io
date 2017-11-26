@@ -1,0 +1,3 @@
+[submodule "projects/seymour"]
+	path = projects/seymour
+	url = git@github.com:harc/seymour.git
