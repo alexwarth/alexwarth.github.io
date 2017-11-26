@@ -67,6 +67,10 @@ div.described-block > div.description {
   right: 0;
 }
 
+div.described-block > div.description a {
+  color: inherit;
+}
+
 div.described-block > div.description b {
   color: white;
 }
@@ -77,8 +81,4 @@ div.described-block:hover > div.description {
 
 div.described-block:not(:hover) > .imagelink {
    outline-color: #ccc;
-}
-
-div.described-block > div.description > a {
-  color: inherit;
 }
