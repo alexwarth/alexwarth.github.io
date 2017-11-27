@@ -38,7 +38,7 @@ Alessandro Warth. [Live Programming Workshop (LIVE), 2016](https://2016.ecoop.or
 
 [_Packrat Parsers Can Support Left Recursion_](http://www.vpri.org/pdf/tr2007002_packrat.pdf). Alessandro Warth, Jamie Douglass, and Todd Millstein. [Workshop on Partial Evaluation and Program Manipulation (PEPM), 2008](http://program-transformation.org/PEPM08/WebHome).
 
-[_OMeta: an Object-Oriented Language for Pattern Matching_](http://tinlizzie.org/~awarth/papers/dls07.pdf). Alessandro Warth and Ian Piumarta. [Dynamic Languages Symposium (DLS), 2007](http://dynamic-languages-symposium.org/dls-07/).
+[_OMeta: an Object-Oriented Language for Pattern Matching_](http://www.vpri.org/pdf/tr2007003_ometa.pdf). Alessandro Warth and Ian Piumarta. [Dynamic Languages Symposium (DLS), 2007](http://dynamic-languages-symposium.org/dls-07/).
 
 [_LazyJ: Seamless Lazy Evaluation in Java_](http://foolwood07.cs.uchicago.edu/program/warth.pdf). [International Workshop on the Foundations and Developments of Object-Oriented Languages (FOOL / WOOD), 2007](http://foolwood07.cs.uchicago.edu/).
 
