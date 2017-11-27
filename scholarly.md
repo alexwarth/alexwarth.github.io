@@ -81,7 +81,26 @@ Conference / Workshop Talks and Colloquia
 
 _Worlds: Controlling the Scope of Side Effects_. ECOOP, 2011.
 
-...
+_Prototyping Programming Languages with OMeta_. Talk at Northrop Grumman, Sacramento, CA, 2012.
+
+_How Complex is Personal Computing?_. With Alan Kay, Dan Amelang, and Hesam Samimi. Colloquium at University of Illinois, Urbana-Champaign, 2009.
+
+_Designing and Implementing Domain-Specific Languages_. Talk at State Farm, Bloomington, IL, 2009.
+
+_Introduction to Programming in Squeak Etoys_. Squeakfest Brasil, 2009.
+
+_Worlds: Controlling the Scope of Side Effects_. Colloquium at Tokyo Institute of Technology,
+2009.
+
+_Packrat Parsers Can Support Left Recursion_. PEPM, 2008.
+
+_OMeta: an Object-Oriented Language for Pattern-Matching_. DLS, 2007.
+
+_LazyJ: Seamless Lazy Evaluation in Java_. FOOL / WOOD, 2007.
+
+_Statically Scoped Object Adaptation with Expanders_. OOPSLA, 2006.
+
+_Modular Component Extensibility with Expanders_. SoCal Programming Languages and Systems Workshop, 2005.
 
 Service to the Research Community
 ---------------------------------
