@@ -107,4 +107,28 @@ Service to the Research Community
 
 Member, [IFIP 2.16 Working Group on Language Design](http://program-transformation.org/WGLD/).
 
-...
+PC Chair, [Dynamic Languages Symposium (DLS), 2012](http://dynamic-languages-symposium.org/dls-12/)
+
+Steering Committee Member, Dynamic Languages Symposium (DLS), 2012-2014
+
+Chair, Most Notable Paper Award Committee, [Dynamic Languages Symposium (DLS), 2015](http://dynamic-languages-symposium.org/dls-15/)
+
+PC member, [Live Programming Workshop (LIVE), 2016](https://2016.ecoop.org/track/LIVE-2016)
+
+PC member, [Programming Experience Workshop (PX), 2016](https://2016.ecoop.org/track/PX-2016)
+
+PC member, [Future Programming Workshop (FPW), 2015](http://www.future-programming.org/2015/)
+
+PC member, [Future Programming Workshop (FPW), 2014](http://www.future-programming.org/2014/)
+
+PC member, [Onward!, 2013](http://onward-conference.org/2013/)
+
+PC member, [Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU), 2011](https://ecs.victoria.ac.nz/Events/PLATEAU/2011)
+
+Panel Member, ECOOP Doctoral Symposium, 2011=
+
+PC member, [Dynamic Languages Symposium (DLS), 2012](http://dynamic-languages-symposium.org/dls-12/)
+
+PC member, [Workshop on Dynamic Languages and Applications (DYLA), 2010](http://scg.unibe.ch/wiki/events/dyla2010)
+
+PC member, [Conference on Generative Programming and Component Engineering (GPCE), 2010](http://program-transformation.org/GPCE10/)
