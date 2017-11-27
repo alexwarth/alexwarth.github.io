@@ -13,3 +13,6 @@
 [submodule "projects/textPlusPlus"]
 	path = projects/textPlusPlus
 	url = https://github.com/alexwarth/textPlusPlus.git
+[submodule "projects/scrub"]
+	path = projects/scrub
+	url = https://github.com/alexwarth/scrub.git
