@@ -38,7 +38,7 @@ Alessandro Warth. [Live Programming Workshop (LIVE), 2016](https://2016.ecoop.or
 
 [_Packrat Parsers Can Support Left Recursion_](http://www.vpri.org/pdf/tr2007002_packrat.pdf). Alessandro Warth, Jamie Douglass, and Todd Millstein. [Workshop on Partial Evaluation and Program Manipulation (PEPM), 2008](http://program-transformation.org/PEPM08/WebHome).
 
-[_OMeta: an Object-Oriented Language for Pattern Matching_](http://www.vpri.org/pdf/tr2007003_ometa.pdf). Alessandro Warth and Ian Piumarta. [Dynamic Languages Symposium (DLS), 2007](http://dynamic-languages-symposium.org/dls-07/).
+[_OMeta: an Object-Oriented Language for Pattern Matching_](http://www.vpri.org/pdf/tr2007003_ometa.pdf). Alessandro Warth and Ian Piumarta. [Dynamic Languages Symposium (DLS), 2007](http://dynamic-languages-symposium.org/dls-07/). ([slides](papers/dls07-slides.pdf))
 
 [_LazyJ: Seamless Lazy Evaluation in Java_](http://foolwood07.cs.uchicago.edu/program/warth.pdf). [International Workshop on the Foundations and Developments of Object-Oriented Languages (FOOL / WOOD), 2007](http://foolwood07.cs.uchicago.edu/).
 
@@ -72,7 +72,9 @@ Keynote Talks
 
 [_Leveraging Live Programming in the Classroom: an Experience Report_](papers/live2016-slides.pdf). [Live Programming Workshop (LIVE), 2016](https://2016.ecoop.org/track/LIVE-2016), Rome, Italy.
 
-...
+[_Much Ado About ⌘Z_](papers/undo-smalltalks09.pdf). Smalltalks 2009, Buenos Aires, Argentina.
+
+[_Implementing Programming Languages for Fun and Profit with OMeta_](papers/sts08-slides.pdf). Smalltalk Solutions 2008, Reno, Nevada.
 
 Conference / Workshop Talks and Colloquia
 -----------------------------------------
