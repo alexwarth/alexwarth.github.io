@@ -109,7 +109,7 @@ Member, [IFIP 2.16 Working Group on Language Design](http://program-transformati
 
 PC Chair, [Dynamic Languages Symposium (DLS), 2012](http://dynamic-languages-symposium.org/dls-12/)
 
-Steering Committee Member, Dynamic Languages Symposium (DLS), 2012-2014
+Steering Committee Member, [Dynamic Languages Symposium (DLS)](http://dynamic-languages-symposium.org/), 2012-2014
 
 Chair, Most Notable Paper Award Committee, [Dynamic Languages Symposium (DLS), 2015](http://dynamic-languages-symposium.org/dls-15/)
 
