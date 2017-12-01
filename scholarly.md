@@ -36,13 +36,13 @@ Alessandro Warth. [Live Programming Workshop (LIVE), 2016](https://2016.ecoop.or
 
 [_Toward a More Scalable End-User Scripting Language_](http://www.vpri.org/pdf/tr2008001_scaleLang.pdf). Alessandro Warth, Takashi Yamamiya, Yoshiki Ohshima, and Scott Wallace. [International Conference on Creating, Connecting, and Collaborating through Computing (C5), 2008](http://www.cm.is.ritsumei.ac.jp/c5-08/).
 
-[_Packrat Parsers Can Support Left Recursion_](http://www.vpri.org/pdf/tr2007002_packrat.pdf). Alessandro Warth, Jamie Douglass, and Todd Millstein. [Workshop on Partial Evaluation and Program Manipulation (PEPM), 2008](http://program-transformation.org/PEPM08/WebHome).
+[_Packrat Parsers Can Support Left Recursion_](http://www.vpri.org/pdf/tr2007002_packrat.pdf). Alessandro Warth, Jamie Douglass, and Todd Millstein. [Workshop on Partial Evaluation and Program Manipulation (PEPM), 2008](http://program-transformation.org/PEPM08/WebHome). ([slides](papers/pepm08-slides.pdf))
 
 [_OMeta: an Object-Oriented Language for Pattern Matching_](http://www.vpri.org/pdf/tr2007003_ometa.pdf). Alessandro Warth and Ian Piumarta. [Dynamic Languages Symposium (DLS), 2007](http://dynamic-languages-symposium.org/dls-07/). ([slides](papers/dls07-slides.pdf))
 
 [_LazyJ: Seamless Lazy Evaluation in Java_](http://foolwood07.cs.uchicago.edu/program/warth.pdf). [International Workshop on the Foundations and Developments of Object-Oriented Languages (FOOL / WOOD), 2007](http://foolwood07.cs.uchicago.edu/).
 
-[Statically Scoped Object Adaptation with Expanders](http://web.cs.ucla.edu/~todd/research/oopsla06a.pdf). Alessandro Warth, Milan Stanojevic, and Todd Millstein. [International Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA), 2006](http://www.oopsla.org/2006/program.html).
+[Statically Scoped Object Adaptation with Expanders](http://web.cs.ucla.edu/~todd/research/oopsla06a.pdf). Alessandro Warth, Milan Stanojevic, and Todd Millstein. [International Conference on Object-Oriented Programming Systems, Languages, and Applications (OOPSLA), 2006](http://www.oopsla.org/2006/program.html). ([slides](papers/oopsla06-slides.pdf))
 
 Other Papers, Manuscripts, Etc.
 -------------------------------
@@ -92,13 +92,13 @@ _Introduction to Programming in Squeak Etoys_. Squeakfest Brasil, 2009.
 _Worlds: Controlling the Scope of Side Effects_. Colloquium at Tokyo Institute of Technology,
 2009.
 
-_Packrat Parsers Can Support Left Recursion_. PEPM, 2008.
+[_Packrat Parsers Can Support Left Recursion_](papers/pepm08-slides.pdf).
 
-_OMeta: an Object-Oriented Language for Pattern-Matching_. DLS, 2007.
+[_OMeta: an Object-Oriented Language for Pattern-Matching_](papers/dls07-slides.pdf). DLS, 2007.
 
 _LazyJ: Seamless Lazy Evaluation in Java_. FOOL / WOOD, 2007.
 
-_Statically Scoped Object Adaptation with Expanders_. OOPSLA, 2006.
+[_Statically Scoped Object Adaptation with Expanders_](papers/oopsla06-slides.pdf). OOPSLA, 2006.
 
 _Modular Component Extensibility with Expanders_. SoCal Programming Languages and Systems Workshop, 2005.
 
