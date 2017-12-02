@@ -92,7 +92,7 @@ _Introduction to Programming in Squeak Etoys_. Squeakfest Brasil, 2009.
 _Worlds: Controlling the Scope of Side Effects_. Colloquium at Tokyo Institute of Technology,
 2009.
 
-[_Packrat Parsers Can Support Left Recursion_](papers/pepm08-slides.pdf).
+[_Packrat Parsers Can Support Left Recursion_](papers/pepm08-slides.pdf). PEPM, 2008.
 
 [_OMeta: an Object-Oriented Language for Pattern-Matching_](papers/dls07-slides.pdf). DLS, 2007.
 
