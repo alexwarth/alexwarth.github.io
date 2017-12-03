@@ -16,3 +16,6 @@
 [submodule "projects/scrub"]
 	path = projects/scrub
 	url = https://github.com/alexwarth/scrub.git
+[submodule "projects/um-js"]
+	path = projects/um-js
+	url = https://github.com/alexwarth/um-js.git
