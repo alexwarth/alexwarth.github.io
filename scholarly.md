@@ -102,7 +102,7 @@ _LazyJ: Seamless Lazy Evaluation in Java_. FOOL / WOOD, 2007.
 
 [_Statically Scoped Object Adaptation with Expanders_](papers/oopsla06-slides.pdf). OOPSLA, 2006.
 
-_Modular Component Extensibility with Expanders_. SoCal Programming Languages and Systems Workshop, 2005.
+[_Modular Component Extensibility with Expanders_](papers/expanders-socal05.pdf). SoCal Programming Languages and Systems Workshop, 2005.
 
 Service to the Research Community
 ---------------------------------
