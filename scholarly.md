@@ -79,7 +79,7 @@ Keynote Talks
 Conference / Workshop Talks and Colloquia
 -----------------------------------------
 
-_Towards a Better Programming Experience — In the Classroom and Beyond_. University of Miami, 2017.
+_Towards a Better Programming Experience — In the Classroom and Beyond_. Talk at University of Miami, 2017.
 
 _Worlds: Controlling the Scope of Side Effects_. ECOOP, 2011.
 
