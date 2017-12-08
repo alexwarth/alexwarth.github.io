@@ -107,7 +107,7 @@ _Modular Component Extensibility with Expanders_. SoCal Programming Languages an
 Service to the Research Community
 ---------------------------------
 
-Member, [IFIP 2.16 Working Group on Language Design](http://program-transformation.org/WGLD/).
+Member, [IFIP 2.16 Working Group on Language Design](http://program-transformation.org/WGLD/), 2011 - present.
 
 PC Chair, [Dynamic Languages Symposium (DLS), 2012](http://dynamic-languages-symposium.org/dls-12/)
 
@@ -127,7 +127,7 @@ PC member, [Onward!, 2013](http://onward-conference.org/2013/)
 
 PC member, [Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU), 2011](https://ecs.victoria.ac.nz/Events/PLATEAU/2011)
 
-Panel Member, ECOOP Doctoral Symposium, 2011=
+Panel Member, ECOOP Doctoral Symposium, 2011.
 
 PC member, [Dynamic Languages Symposium (DLS), 2012](http://dynamic-languages-symposium.org/dls-12/)
 
