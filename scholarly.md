@@ -79,6 +79,8 @@ Keynote Talks
 Conference / Workshop Talks and Colloquia
 -----------------------------------------
 
+_Towards a Better Programming Experience — In the Classroom and Beyond_. University of Miami, 2017.
+
 _Worlds: Controlling the Scope of Side Effects_. ECOOP, 2011.
 
 _Prototyping Programming Languages with OMeta_. Talk at Northrop Grumman, Sacramento, CA, 2012.
