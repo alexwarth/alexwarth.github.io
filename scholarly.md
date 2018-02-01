@@ -47,7 +47,7 @@ Alessandro Warth. [Live Programming Workshop (LIVE), 2016](https://2016.ecoop.or
 Other Papers, Manuscripts, Etc.
 -------------------------------
 
-[_Recognizing and Generating Terms using Derivatives of Parsing Expression Grammars_](papers/derivatives-of-pegs.pdf). Tony Garnock-Jones, Mahdi Eslamimehr, and Alessandro Warth, 2014. (Working paper.)
+[_Recognizing and Generating Terms using Derivatives of Parsing Expression Grammars_](https://arxiv.org/abs/1801.10490). Tony Garnock-Jones, Mahdi Eslamimehr, and Alessandro Warth, 2014. (Working paper.)
 
 [_STEPS Toward Expressive Programming Systems: 2011 Progress Report Submitted to the National Science Foundation_](http://www.vpri.org/pdf/tr2011004_steps11.pdf). Dan Amelang, Bert Freudenberg, Ted Kaehler, Alan Kay, Stephen Murrell, Yoshiki Ohshima, Iam Piumarta, Kim Rose, Scott Wallace, Alessandro Warth, and Takashi Yamamiya. VPRI Technical Report TR-2011-004, 2011.
 
