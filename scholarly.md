@@ -81,9 +81,9 @@ Conference / Workshop Talks and Colloquia
 
 _Towards a Better Programming Experience — In the Classroom and Beyond_. Talk at University of Miami, 2017.
 
-_Worlds: Controlling the Scope of Side Effects_. ECOOP, 2011.
-
 _Prototyping Programming Languages with OMeta_. Talk at Northrop Grumman, Sacramento, CA, 2012.
+
+_Worlds: Controlling the Scope of Side Effects_. ECOOP, 2011.
 
 _How Complex is Personal Computing?_. With Alan Kay, Dan Amelang, and Hesam Samimi. Colloquium at University of Illinois, Urbana-Champaign, 2009.
 
