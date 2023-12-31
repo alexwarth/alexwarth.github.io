@@ -1,35 +1,3 @@
-var __defProp = Object.defineProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, {get: all[name], enumerable: true});
-};
-
-// constraints.js
-var constraints_exports = {};
-__export(constraints_exports, {
-  Absorb: () => Absorb,
-  Constant: () => Constant,
-  Constraint: () => Constraint,
-  Finger: () => Finger,
-  Formula: () => Formula,
-  LinearRelationship: () => LinearRelationship,
-  Pin: () => Pin,
-  PolarVector: () => PolarVector,
-  Variable: () => Variable,
-  Weight: () => Weight,
-  absorb: () => absorb,
-  constant: () => constant,
-  equals: () => equals,
-  finger: () => finger,
-  formula: () => formula,
-  linearRelationship: () => linearRelationship,
-  pin: () => pin,
-  polarVector: () => polarVector,
-  solve: () => solve,
-  variable: () => variable,
-  weight: () => weight
-});
-
 // helpers.js
 var TAU = Math.PI * 2;
 function normalizeAngle(angle) {
@@ -494,8 +462,8 @@ var LLFinger = class extends LowLevelConstraint {
     this.constraint = constraint;
     this.variables.push(constraint.handle.xVariable, constraint.handle.yVariable);
   }
-  addTo(constraints2) {
-    constraints2.push(this);
+  addTo(constraints3) {
+    constraints3.push(this);
   }
   getError([x, y], knowns, freeVariables) {
     return 10 * Math.sqrt(vec_default.dist({x, y}, this.constraint.position));
@@ -515,14 +483,14 @@ var LLDistance = class extends LowLevelConstraint {
   get distance() {
     return this.variables[0];
   }
-  addTo(constraints2) {
-    for (const that of constraints2) {
+  addTo(constraints3) {
+    for (const that of constraints3) {
       if (that instanceof LLDistance && (this.a.equals(that.a) && this.b.equals(that.b) || this.a.equals(that.b) && this.b.equals(that.a))) {
         that.distance.makeEqualTo(this.distance);
         return;
       }
     }
-    constraints2.push(this);
+    constraints3.push(this);
   }
   propagateKnowns(knowns) {
     if (!knowns.has(this.distance.canonicalInstance) && knowns.has(this.a.xVariable.canonicalInstance) && knowns.has(this.a.yVariable.canonicalInstance) && knowns.has(this.b.xVariable.canonicalInstance) && knowns.has(this.b.yVariable.canonicalInstance)) {
@@ -554,8 +522,8 @@ var LLAngle = class extends LowLevelConstraint {
   get angle() {
     return this.variables[0];
   }
-  addTo(constraints2) {
-    for (const that of constraints2) {
+  addTo(constraints3) {
+    for (const that of constraints3) {
       if (!(that instanceof LLAngle)) {
         continue;
       } else if (this.a.equals(that.a) && this.b.equals(that.b)) {
@@ -566,7 +534,7 @@ var LLAngle = class extends LowLevelConstraint {
         return;
       }
     }
-    constraints2.push(this);
+    constraints3.push(this);
   }
   propagateKnowns(knowns) {
     if (!knowns.has(this.angle) && knowns.has(this.a.xVariable.canonicalInstance) && knowns.has(this.a.yVariable.canonicalInstance) && knowns.has(this.b.xVariable.canonicalInstance) && knowns.has(this.b.yVariable.canonicalInstance)) {
@@ -638,8 +606,8 @@ var LLFormula = class extends LowLevelConstraint {
     this.variables.push(...args, this.result);
     this.ownVariables.add(this.result);
   }
-  addTo(constraints2) {
-    constraints2.push(this);
+  addTo(constraints3) {
+    constraints3.push(this);
   }
   propagateKnowns(knowns) {
     if (!knowns.has(this.result.canonicalInstance) && this.args.every((arg) => knowns.has(arg.canonicalInstance))) {
@@ -669,8 +637,8 @@ var LLWeight = class extends LowLevelConstraint {
     this.ownVariables.add(this.weight);
     this.variables.push(this.weight, constraint.handle.xVariable, constraint.handle.yVariable);
   }
-  addTo(constraints2) {
-    constraints2.push(this);
+  addTo(constraints3) {
+    constraints3.push(this);
   }
   getError([w, hx, hy], knowns, freeVariables) {
     const {x: origX, y: origY} = this.constraint.handle;
@@ -874,7 +842,6 @@ var _LinearRelationship = class extends Constraint {
 var LinearRelationship = _LinearRelationship;
 LinearRelationship.memo = new Map();
 var linearRelationship = LinearRelationship.create;
-var equals = (x, y) => linearRelationship(y, 1, x, 0);
 var _Absorb = class extends Constraint {
   constructor(parent, child) {
     super();
@@ -991,28 +958,28 @@ function getClustersForSolver() {
 function computeClusters(activeConstraints) {
   const clusters = new Set();
   for (const constraint of activeConstraints) {
-    const constraints2 = [constraint];
+    const constraints3 = [constraint];
     const lowLevelConstraints = [...constraint.lowLevelConstraints];
     let manipulationSet = constraint.getManipulationSet();
     for (const cluster of clusters) {
       if (!sets.overlap(cluster.manipulationSet, manipulationSet)) {
         continue;
       }
-      constraints2.push(...cluster.constraints);
+      constraints3.push(...cluster.constraints);
       for (const llc of cluster.lowLevelConstraints) {
         llc.addTo(lowLevelConstraints);
       }
       manipulationSet = new Set([...manipulationSet, ...cluster.manipulationSet].map((v) => v.canonicalInstance));
       clusters.delete(cluster);
     }
-    clusters.add({constraints: constraints2, lowLevelConstraints, manipulationSet});
+    clusters.add({constraints: constraints3, lowLevelConstraints, manipulationSet});
   }
-  return sets.map(clusters, ({constraints: constraints2, lowLevelConstraints}) => createClusterForSolver(constraints2, lowLevelConstraints));
+  return sets.map(clusters, ({constraints: constraints3, lowLevelConstraints}) => createClusterForSolver(constraints3, lowLevelConstraints));
 }
-function createClusterForSolver(constraints2, lowLevelConstraints) {
-  const knowns = computeKnowns(constraints2, lowLevelConstraints);
+function createClusterForSolver(constraints3, lowLevelConstraints) {
+  const knowns = computeKnowns(constraints3, lowLevelConstraints);
   const variables = new Set();
-  for (const constraint of constraints2) {
+  for (const constraint of constraints3) {
     for (const variable2 of constraint.variables) {
       if (!knowns.has(variable2.canonicalInstance)) {
         variables.add(variable2.canonicalInstance);
@@ -1044,7 +1011,7 @@ function createClusterForSolver(constraints2, lowLevelConstraints) {
     }
   }
   return {
-    constraints: constraints2,
+    constraints: constraints3,
     lowLevelConstraints,
     variables: Array.from(variables),
     freeVariables,
@@ -1061,20 +1028,20 @@ function solve(maxIterations = 1e3) {
   }
 }
 function solveCluster(cluster, maxIterations) {
-  const {constraints: constraints2, lowLevelConstraints} = cluster;
+  const {constraints: constraints3, lowLevelConstraints} = cluster;
   let {freeVariables, parameters} = cluster;
-  if (constraints2.length === 0) {
+  if (constraints3.length === 0) {
     return;
   }
-  const handleToFinger = getHandleToFingerMap(constraints2);
-  for (const pv of constraints2) {
+  const handleToFinger = getHandleToFingerMap(constraints3);
+  for (const pv of constraints3) {
     if (!(pv instanceof PolarVector)) {
       continue;
     }
     const aFinger = handleToFinger.get(pv.a.canonicalInstance);
     const bFinger = handleToFinger.get(pv.b.canonicalInstance);
     if (aFinger && bFinger) {
-      for (const k of constraints2) {
+      for (const k of constraints3) {
         if (!(k instanceof Constant)) {
           continue;
         }
@@ -1089,9 +1056,9 @@ function solveCluster(cluster, maxIterations) {
       }
     }
   }
-  const knowns = computeKnowns(constraints2, lowLevelConstraints);
+  const knowns = computeKnowns(constraints3, lowLevelConstraints);
   let gizmoHack = false;
-  for (const pv of constraints2) {
+  for (const pv of constraints3) {
     if (pv instanceof PolarVector && pv.angle.isScrubbing && freeVariables.has(pv.distance.canonicalInstance)) {
       gizmoHack = true;
       knowns.add(pv.distance.canonicalInstance);
@@ -1146,11 +1113,11 @@ function solveCluster(cluster, maxIterations) {
     param.value = outputs.shift();
   }
 }
-function computeKnowns(constraints2, lowLevelConstraints) {
+function computeKnowns(constraints3, lowLevelConstraints) {
   const knowns = new Set();
   while (true) {
     const oldNumKnowns = knowns.size;
-    for (const constraint of constraints2) {
+    for (const constraint of constraints3) {
       constraint.propagateKnowns(knowns);
     }
     for (const llc of lowLevelConstraints) {
@@ -1162,9 +1129,9 @@ function computeKnowns(constraints2, lowLevelConstraints) {
   }
   return knowns;
 }
-function getHandleToFingerMap(constraints2) {
+function getHandleToFingerMap(constraints3) {
   const handleToFinger = new Map();
-  for (const constraint of constraints2) {
+  for (const constraint of constraints3) {
     if (constraint instanceof Finger) {
       handleToFinger.set(constraint.handle.canonicalInstance, constraint);
     }
@@ -1309,7 +1276,6 @@ Handle.all = new Set();
 var Handle_default = Handle;
 
 // app.js
-makeBridge();
 var pinImage = new Image();
 pinImage.src = "pin.png";
 var pinImageLoaded = false;
@@ -1352,16 +1318,152 @@ canvas.addEventListener("mouseup", (e) => {
     handleUnderMouse = null;
   }
 });
+var toggleDemoButton = document.createElement("button");
+toggleDemoButton.textContent = "toggle demo";
+toggleDemoButton.style.position = "absolute";
+toggleDemoButton.style.top = "30px";
+toggleDemoButton.style.right = "30px";
+toggleDemoButton.onclick = toggleDemo;
+document.body.appendChild(toggleDemoButton);
+var weightSlider = document.createElement("input");
+weightSlider.setAttribute("type", "range");
+weightSlider.min = 0;
+weightSlider.max = 5;
+weightSlider.step = 0.01;
+weightSlider.style.position = "absolute";
+weightSlider.style.top = "2px";
+weightSlider.style.right = "30px";
+document.body.appendChild(weightSlider);
+var demo;
+var demo1 = {
+  init() {
+    const handles = [
+      {x: 37, y: 44},
+      {x: 99, y: 44},
+      {x: 161, y: 45},
+      {x: 222, y: 45},
+      {x: 283, y: 47},
+      {x: 37, y: 205},
+      {x: 99, y: 147},
+      {x: 160, y: 109},
+      {x: 221, y: 86},
+      {x: 282, y: 73},
+      {x: 343, y: 72},
+      {x: 649, y: 44},
+      {x: 587, y: 44},
+      {x: 525, y: 45},
+      {x: 464, y: 45},
+      {x: 403, y: 47},
+      {x: 649, y: 205},
+      {x: 587, y: 147},
+      {x: 526, y: 109},
+      {x: 465, y: 86},
+      {x: 404, y: 73}
+    ].map((pos) => Handle_default.create(pos));
+    const triangles = [
+      [0, 5, 6],
+      [0, 6, 1],
+      [1, 6, 7],
+      [1, 7, 2],
+      [2, 7, 8],
+      [2, 8, 3],
+      [3, 8, 9],
+      [3, 9, 4],
+      [4, 9, 10],
+      [11, 17, 16],
+      [11, 12, 17],
+      [12, 18, 17],
+      [12, 13, 18],
+      [13, 19, 18],
+      [13, 14, 19],
+      [14, 20, 19],
+      [14, 15, 20],
+      [15, 10, 20]
+    ].map((indices) => indices.map((idx) => handles[idx]));
+    for (const [a, b, c] of triangles) {
+      polarVector(a, b).distance.lock();
+      polarVector(b, c).distance.lock();
+      polarVector(c, a).distance.lock();
+    }
+    pin(handles[0]);
+    pin(handles[5]);
+    pin(handles[11]);
+    pin(handles[16]);
+    const weightHandle = Handle_default.create({x: 343, y: 150});
+    polarVector(handles[10], weightHandle).distance.lock();
+    const weight2 = weight(weightHandle, 2).weight;
+    weightSlider.value = weight2.value;
+    weightSlider.oninput = () => weight2.lock(weightSlider.value);
+    weightSlider.style.right = "30px";
+    document.body.appendChild(weightSlider);
+  },
+  render() {
+    drawRotated(pinImage, 0, 29, 42);
+    drawRotated(pinImage, -60, 30, 210);
+    drawRotated(pinImage, 180, 658, 47);
+    drawRotated(pinImage, -120, 650, 212);
+    for (const c of Constraint.all) {
+      renderConstraint(c);
+    }
+  }
+};
+var adjustLabelPosition = new Set();
+var demo2 = {
+  init() {
+    let lastPart = null;
+    for (let idx = 0; idx < 6; idx++) {
+      const part = this.makePart(lastPart ? lastPart.c : Handle_default.create({x: 50, y: 50}), lastPart ? lastPart.d : Handle_default.create({x: 50, y: 200}));
+      if (!lastPart) {
+        pin(part.b);
+      }
+      if (idx === 1) {
+        const weightHandle = Handle_default.create({x: part.d.x, y: part.d.y + 200});
+        polarVector(part.d, weightHandle).distance.lock();
+        const weight2 = weight(weightHandle, 2).weight;
+        weightSlider.value = weight2.value;
+        weightSlider.oninput = () => weight2.lock(weightSlider.value);
+      }
+      lastPart = part;
+    }
+    polarVector(lastPart.c, lastPart.d).distance.lock();
+    pin(lastPart.d);
+  },
+  makePart(a, b) {
+    const c = Handle_default.create({x: a.x + 150, y: a.y});
+    const d = Handle_default.create({x: b.x + 150, y: b.y});
+    polarVector(a, b).distance.lock();
+    polarVector(a, c).distance.lock();
+    polarVector(b, c).distance.lock();
+    polarVector(b, d).distance.lock();
+    polarVector(a, d).distance.lock();
+    adjustLabelPosition.add(polarVector(a, d));
+    adjustLabelPosition.add(polarVector(b, c));
+    return {a, b, c, d};
+  },
+  render() {
+    drawRotated(pinImage, -90, 47, 207);
+    drawRotated(pinImage, -90, 947, 207);
+    for (const c of Constraint.all) {
+      renderConstraint(c);
+    }
+  }
+};
+function toggleDemo() {
+  adjustLabelPosition.clear();
+  for (const constraint of Constraint.all) {
+    constraint.remove();
+  }
+  for (const handle of Handle_default.all) {
+    handle.remove();
+  }
+  demo = demo === demo1 ? demo2 : demo1;
+  demo.init();
+}
+toggleDemo();
 function render() {
   solve(25);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawRotated(pinImage, 0, 29, 42);
-  drawRotated(pinImage, -60, 30, 210);
-  drawRotated(pinImage, 180, 658, 47);
-  drawRotated(pinImage, -120, 650, 212);
-  for (const c of Constraint.all) {
-    renderConstraint(c);
-  }
+  demo.render();
   requestAnimationFrame(render);
 }
 function drawRotated(image, degrees, x, y) {
@@ -1380,17 +1482,18 @@ function flickeryWhite() {
 }
 function renderConstraint(c) {
   if (c instanceof PolarVector) {
+    const {a, b} = c;
     ctx.strokeStyle = flickeryWhite();
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.moveTo(c.a.x, c.a.y);
-    ctx.lineTo(c.b.x, c.b.y);
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
     ctx.closePath();
     ctx.stroke();
     ctx.fillStyle = flickeryWhite();
     const fontSizeInPixels = 12;
     ctx.font = `${fontSizeInPixels}px Major Mono Display`;
-    const delta = (c.distance.value - vec_default.dist(c.a, c.b)) / c.distance.value * 1e4;
+    const delta = (c.distance.value - vec_default.dist(a, b)) / c.distance.value * 1e4;
     let label = delta.toFixed(0);
     if (label === "-0") {
       label = "0";
@@ -1399,78 +1502,12 @@ function renderConstraint(c) {
       label = " " + label;
     }
     const labelWidth = ctx.measureText(label).width;
-    ctx.fillText(label, (c.a.x + c.b.x) / 2 - labelWidth / 2, (c.a.y + c.b.y) / 2 + fontSizeInPixels / 2);
+    if (adjustLabelPosition.has(c)) {
+      ctx.fillText(label, (a.x + 2 * b.x) / 3 - labelWidth / 2, (a.y + 2 * b.y) / 3 + fontSizeInPixels / 2);
+    } else {
+      ctx.fillText(label, (a.x + b.x) / 2 - labelWidth / 2, (a.y + b.y) / 2 + fontSizeInPixels / 2);
+    }
   } else if (c instanceof Weight) {
   } else if (c instanceof Pin) {
   }
-}
-function makeBridge() {
-  const handles = [
-    {x: 37, y: 44},
-    {x: 99, y: 44},
-    {x: 161, y: 45},
-    {x: 222, y: 45},
-    {x: 283, y: 47},
-    {x: 37, y: 205},
-    {x: 99, y: 147},
-    {x: 160, y: 109},
-    {x: 221, y: 86},
-    {x: 282, y: 73},
-    {x: 343, y: 72},
-    {x: 649, y: 44},
-    {x: 587, y: 44},
-    {x: 525, y: 45},
-    {x: 464, y: 45},
-    {x: 403, y: 47},
-    {x: 649, y: 205},
-    {x: 587, y: 147},
-    {x: 526, y: 109},
-    {x: 465, y: 86},
-    {x: 404, y: 73}
-  ].map((pos) => Handle_default.create(pos));
-  const triangles = [
-    [0, 5, 6],
-    [0, 6, 1],
-    [1, 6, 7],
-    [1, 7, 2],
-    [2, 7, 8],
-    [2, 8, 3],
-    [3, 8, 9],
-    [3, 9, 4],
-    [4, 9, 10],
-    [11, 17, 16],
-    [11, 12, 17],
-    [12, 18, 17],
-    [12, 13, 18],
-    [13, 19, 18],
-    [13, 14, 19],
-    [14, 20, 19],
-    [14, 15, 20],
-    [15, 10, 20]
-  ].map((indices) => indices.map((idx) => handles[idx]));
-  for (const [a, b, c] of triangles) {
-    polarVector(a, b).distance.lock();
-    polarVector(b, c).distance.lock();
-    polarVector(c, a).distance.lock();
-  }
-  pin(handles[0]);
-  pin(handles[5]);
-  pin(handles[11]);
-  pin(handles[16]);
-  const weightHandle = Handle_default.create({x: 343, y: 150});
-  polarVector(handles[10], weightHandle).distance.lock();
-  const weight2 = weight(weightHandle, 2).weight;
-  window.weight = weight2;
-  window.constraints = constraints_exports;
-  const weightSlider = document.createElement("input");
-  weightSlider.setAttribute("type", "range");
-  weightSlider.min = 0;
-  weightSlider.max = 5;
-  weightSlider.step = 0.01;
-  weightSlider.value = weight2.value;
-  weightSlider.oninput = () => weight2.lock(weightSlider.value);
-  weightSlider.style.position = "absolute";
-  weightSlider.style.top = "2px";
-  weightSlider.style.right = "30px";
-  document.body.appendChild(weightSlider);
 }
