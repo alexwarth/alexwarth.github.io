@@ -1,4 +1,4 @@
-const f = {
+const h = {
   debug: !1,
   flicker: !1,
   autoSolve: !1,
@@ -7,104 +7,111 @@ const f = {
   instanceSideAttacherColor: "rgb(255,222,33)",
   axisColor: "rgba(255,222,33,0.125)",
   handleRadius: 5,
-  closeEnough: 5
+  closeEnough: 5,
+  crosshairsSize: 15,
+  fontScale: 10,
+  kerning: 0.5,
+  guideLineColor: "rgba(255,255,255,.125)",
+  statusTimeMillis: 4e3
 };
-window.config = f;
-function p(i, t) {
-  return Math.sqrt(P(i, t));
+window.config = h;
+function g(s, t) {
+  return Math.sqrt(I(s, t));
 }
-function P(i, t) {
-  return Math.pow(i.x - t.x, 2) + Math.pow(i.y - t.y, 2);
+function I(s, t) {
+  return Math.pow(s.x - t.x, 2) + Math.pow(s.y - t.y, 2);
 }
-function Y(i, t) {
-  return { x: i.x - t.x, y: i.y - t.y };
+function G(s, t) {
+  return { x: s.x - t.x, y: s.y - t.y };
 }
 const H = Object.freeze({ x: 0, y: 0 });
-function U({ x: i, y: t }, { x: e, y: n }) {
-  return { x: i + e, y: t + n };
+function J({ x: s, y: t }, { x: e, y: n }) {
+  return { x: s + e, y: t + n };
 }
-function O(i, t, e) {
-  const n = i.x - t.x, s = i.y - t.y, a = e * n, c = e * s;
-  return { x: a + t.x, y: c + t.y };
+function F(s, t, e) {
+  const n = s.x - t.x, i = s.y - t.y, a = e * n, o = e * i;
+  return { x: a + t.x, y: o + t.y };
 }
-function W(i, t, e) {
-  const n = i.x - t.x, s = i.y - t.y, a = Math.sin(e), c = Math.cos(e), l = n * c - s * a, T = n * a + s * c;
-  return { x: l + t.x, y: T + t.y };
+function R(s, t, e) {
+  const n = s.x - t.x, i = s.y - t.y, a = Math.sin(e), o = Math.cos(e), d = n * o - i * a, L = n * a + i * o;
+  return { x: d + t.x, y: L + t.y };
 }
-function j(i) {
-  let t = 1 / 0, e = -1 / 0, n = 1 / 0, s = -1 / 0;
-  for (const a of i)
-    t = Math.min(t, a.x), e = Math.max(e, a.x), n = Math.min(n, a.y), s = Math.max(s, a.y);
+function K(s) {
+  let t = 1 / 0, e = -1 / 0, n = 1 / 0, i = -1 / 0;
+  for (const a of s)
+    t = Math.min(t, a.x), e = Math.max(e, a.x), n = Math.min(n, a.y), i = Math.max(i, a.y);
   return {
-    topLeft: { x: t, y: n },
-    bottomRight: { x: e, y: s }
+    topLeft: { x: t, y: i },
+    bottomRight: { x: e, y: n }
   };
 }
-function Q(i, t, e) {
-  return Math.sqrt(nt(i, t, e));
+function Q(s, t, e) {
+  return Math.sqrt(ht(s, t, e));
 }
-function nt(i, t, e) {
-  const n = P(t, e);
+function ht(s, t, e) {
+  const n = I(t, e);
   if (n == 0)
-    return P(i, t);
-  const s = Math.max(0, Math.min(((i.x - t.x) * (e.x - t.x) + (i.y - t.y) * (e.y - t.y)) / n, 1));
-  return P(i, { x: t.x + s * (e.x - t.x), y: t.y + s * (e.y - t.y) });
+    return I(s, t);
+  const i = Math.max(
+    0,
+    Math.min(((s.x - t.x) * (e.x - t.x) + (s.y - t.y) * (e.y - t.y)) / n, 1)
+  );
+  return I(s, { x: t.x + i * (e.x - t.x), y: t.y + i * (e.y - t.y) });
 }
-function it(i) {
-  return 1 - Math.pow(1 - i, 5);
+function dt(s) {
+  return 1 - Math.pow(1 - s, 5);
 }
-const R = 4e3;
-let g, u;
-function st(i) {
-  if (g = i, u = g.getContext("2d"), g.width = innerWidth, g.height = innerHeight, devicePixelRatio !== 1) {
-    const t = g.width, e = g.height;
-    g.width = t * devicePixelRatio, g.height = e * devicePixelRatio, g.style.width = t + "px", g.style.height = e + "px", u.scale(devicePixelRatio, devicePixelRatio);
+let y, u;
+function lt(s) {
+  if (y = s, u = y.getContext("2d"), y.width = innerWidth, y.height = innerHeight, devicePixelRatio !== 1) {
+    const t = y.width, e = y.height;
+    y.width = t * devicePixelRatio, y.height = e * devicePixelRatio, y.style.width = t + "px", y.style.height = e + "px", u.scale(devicePixelRatio, devicePixelRatio);
   }
 }
-let I = "", G = 0;
-function y(i) {
-  I = i, G = Date.now();
+let P = "", N = 0;
+function m(s) {
+  P = s, N = Date.now();
 }
-function at() {
-  if (u.clearRect(0, 0, g.width, g.height), u.lineWidth = 5, u.lineCap = "round", I.length > 0) {
+function xt() {
+  if (u.clearRect(0, 0, y.width, y.height), u.lineWidth = 5, u.lineCap = "round", P.length > 0) {
     u.font = "40px Monaco";
-    const t = u.measureText(I).width, e = Date.now() - G;
-    if (e > R)
-      I = "";
+    const t = u.measureText(P).width, e = Date.now() - N;
+    if (e > h.statusTimeMillis)
+      P = "";
     else {
-      const n = 1 - it(e / R);
+      const n = 1 - dt(e / h.statusTimeMillis);
       u.fillStyle = `rgba(255,222,33,${n})`, u.fillText(
-        I,
+        P,
         (innerWidth - t) / 2,
         innerHeight - 40
       );
     }
   }
 }
-function F(i) {
-  return i;
+function X(s) {
+  return s;
 }
-function A(i, t, e = b(), n = F) {
+function A(s, t, e = b(), n = X) {
   u.strokeStyle = e, u.beginPath();
-  const s = n(i), a = n(t);
-  u.moveTo(s.x, s.y), u.lineTo(a.x, a.y), u.stroke();
+  const i = n(s), a = n(t);
+  u.moveTo(i.x, i.y), u.lineTo(a.x, a.y), u.stroke();
 }
-function J(i, t, e, n = b(), s = F) {
-  const a = s(t), c = s(e), l = s(i);
+function Z(s, t, e, n = b(), i = X) {
+  const a = i(t), o = i(e), d = i(s);
   u.beginPath(), u.strokeStyle = n;
-  const T = Math.atan2(a.y - l.y, a.x - l.x), et = Math.atan2(c.y - l.y, c.x - l.x);
-  u.arc(l.x, l.y, p(l, a), T, et), u.stroke();
+  const L = Math.atan2(a.y - d.y, a.x - d.x), ct = Math.atan2(o.y - d.y, o.x - d.x);
+  u.arc(d.x, d.y, g(d, a), L, ct), u.stroke();
 }
-function K(i, t, e = b(), n = F) {
+function _(s, t, e = b(), n = X) {
   u.fillStyle = e;
-  const s = 12;
-  u.font = `${s}px Major Mono Display`;
-  const a = u.measureText(t).width, { x: c, y: l } = n(i);
-  u.fillText(t, c - a / 2, l + s / 2);
+  const i = 12;
+  u.font = `${i}px Major Mono Display`;
+  const a = u.measureText(t).width, { x: o, y: d } = n(s);
+  u.fillText(t, o - a / 2, d + i / 2);
 }
-function b(i = "normal") {
+function b(s = "normal") {
   let t, e;
-  return i === "normal" ? (t = 0.35, e = 0.3) : i === "light" ? (t = 0.1, e = 0.05) : (t = 0.7, e = 0.1), `rgba(255, 255, 255, ${f.flicker ? Math.random() * e + t : 0.75 * e + t})`;
+  return s === "normal" ? (t = 0.35, e = 0.3) : s === "light" ? (t = 0.1, e = 0.05) : (t = 0.7, e = 0.1), `rgba(255, 255, 255, ${h.flicker ? Math.random() * e + t : 0.75 * e + t})`;
 }
 class M {
   constructor(t, e) {
@@ -117,12 +124,12 @@ class M {
   }
   replaceHandle(t, e) {
     for (let n = 0; n < this.handles.length; n++)
-      this.handles[n], this.handles.forEach((s, a) => {
-        s === t && (this.handles[a] = e);
+      this.handles[n], this.handles.forEach((i, a) => {
+        i === t && (this.handles[a] = e);
       });
   }
 }
-class rt extends M {
+class ut extends M {
   constructor(t, e) {
     super([], [t, e]);
   }
@@ -137,12 +144,15 @@ class rt extends M {
     return `HorV(${t},${e})`;
   }
   computeError() {
-    return Math.min(Math.abs(this.a.x - this.b.x), Math.abs(this.a.y - this.b.y));
+    return Math.min(
+      Math.abs(this.a.x - this.b.x),
+      Math.abs(this.a.y - this.b.y)
+    );
   }
 }
-class ot extends M {
+class yt extends M {
   constructor(t, e) {
-    super([], [t, e]), this.distance = p(t, e);
+    super([], [t, e]), this.distance = g(t, e);
   }
   get a() {
     return this.handles[0];
@@ -155,12 +165,12 @@ class ot extends M {
     return `D(${t},${e})`;
   }
   computeError() {
-    return this.distance - p(this.a, this.b);
+    return this.distance - g(this.a, this.b);
   }
 }
 class q extends M {
-  constructor(t, e, n, s) {
-    super([], [t, e, n, s]);
+  constructor(t, e, n, i) {
+    super([], [t, e, n, i]);
   }
   get a1() {
     return this.handles[0];
@@ -178,10 +188,10 @@ class q extends M {
     return `E(${this.a1.id},${this.b1.id},${this.a2.id},${this.b2.id})`;
   }
   computeError() {
-    return Math.abs(p(this.a1, this.b1) - p(this.a2, this.b2));
+    return Math.abs(g(this.a1, this.b1) - g(this.a2, this.b2));
   }
 }
-class D extends M {
+class T extends M {
   constructor(t, e, n) {
     super([], [t, e, n]);
   }
@@ -201,9 +211,9 @@ class D extends M {
     return Q(this.p, this.a, this.b);
   }
 }
-class L extends M {
-  constructor(t, e, n, s) {
-    super([], [t, e, n, s]);
+class B extends M {
+  constructor(t, e, n, i) {
+    super([], [t, e, n, i]);
   }
   get p() {
     return this.handles[0];
@@ -221,10 +231,10 @@ class L extends M {
     return `POA(${this.p.id},${this.a.id},${this.b.id},${this.c.id})`;
   }
   computeError() {
-    return p(this.p, this.c) - p(this.a, this.c);
+    return g(this.p, this.c) - g(this.a, this.c);
   }
 }
-class N extends M {
+class tt extends M {
   constructor(t, e, n) {
     super([e], [t, n]), this.instance = e;
   }
@@ -238,11 +248,11 @@ class N extends M {
     return `PI(${this.instance.id},${this.masterPoint.id})`;
   }
   computeError() {
-    return p(
+    return g(
       this.instancePoint,
-      U(
-        O(
-          W(this.masterPoint, H, this.instance.angle),
+      J(
+        F(
+          R(this.masterPoint, H, this.instance.angle),
           H,
           this.instance.scale
         ),
@@ -251,18 +261,18 @@ class N extends M {
     );
   }
 }
-class ct extends M {
-  constructor(t) {
-    super([t], []), this.instance = t;
+class et extends M {
+  constructor(t, e = 1) {
+    super([t], []), this.instance = t, this.scale = e;
   }
   get signature() {
-    return `FS(${this.instance.id})`;
+    return `S(${this.instance.id})`;
   }
   computeError() {
-    return this.instance.size - this.instance.master.size;
+    return this.instance.size - this.scale * this.instance.master.size;
   }
 }
-class X {
+class U {
   constructor() {
     this.constraints = [];
   }
@@ -271,12 +281,17 @@ class X {
     this.constraints.find((n) => n.signature === e) || this.constraints.push(t);
   }
   remove(t) {
-    this.constraints = this.constraints.filter((e) => e !== t);
+    this.constraints = this.constraints.filter(
+      (e) => e !== t
+    );
+  }
+  clear() {
+    this.constraints = [];
   }
   replaceHandle(t, e) {
     const n = this.constraints;
-    this.constraints = [], n.forEach((s) => {
-      s.replaceHandle(t, e), this.add(s);
+    this.constraints = [], n.forEach((i) => {
+      i.replaceHandle(t, e), this.add(i);
     });
   }
   forEach(t) {
@@ -289,12 +304,12 @@ class X {
     return e;
   }
   relaxWithVar(t) {
-    const e = t.value, n = this.computeError() - f.minWorthwhileErrorImprovement;
+    const e = t.value, n = this.computeError() - h.minWorthwhileErrorImprovement;
     t.value = e + 1;
-    const s = this.computeError();
+    const i = this.computeError();
     t.value = e - 1;
     const a = this.computeError();
-    return s < Math.min(n, a) ? (t.value = e + 1, !0) : a < Math.min(n, s) ? (t.value = e - 1, !0) : (t.value = e, !1);
+    return i < Math.min(n, a) ? (t.value = e + 1, !0) : a < Math.min(n, i) ? (t.value = e - 1, !0) : (t.value = e, !1);
   }
   computeError() {
     return this.constraints.map((t) => Math.pow(t.computeError(), 2)).reduce((t, e) => t + e, 0);
@@ -322,16 +337,16 @@ const C = class C {
     this.yVar.value = t;
   }
   contains(t) {
-    return p(t, this) <= f.closeEnough;
+    return g(t, this) <= h.closeEnough;
   }
   distanceTo(t) {
-    return p(this, t);
+    return g(this, t);
   }
   moveBy(t, e) {
     this.xVar.value += t, this.yVar.value += e;
   }
-  render(t, e, n = f.instanceSideAttacherColor) {
-    f.debug && K(e(this), `(${this.x},${this.y})`), A(this, this, n, e);
+  render(t, e, n = h.instanceSideAttacherColor) {
+    h.debug && _(e(this), `(${this.x.toFixed(0)},${this.y.toFixed(0)})`), A(this, this, n, e);
   }
   forEachHandle(t) {
     t(this);
@@ -349,11 +364,11 @@ const C = class C {
 C.nextId = 0;
 let w = C;
 class V {
-  constructor(t, e) {
-    this.a = new w(t), this.b = new w(e);
+  constructor(t, e, n) {
+    this.isGuide = n, this.a = new w(t), this.b = new w(e);
   }
   contains(t) {
-    return !this.a.contains(t) && !this.b.contains(t) && this.distanceTo(t) <= f.closeEnough;
+    return !this.a.contains(t) && !this.b.contains(t) && this.distanceTo(t) <= h.closeEnough;
   }
   distanceTo(t) {
     return Q(t, this.a, this.b);
@@ -365,7 +380,7 @@ class V {
     A(
       this.a,
       this.b,
-      b(t.has(this) ? "bold" : "normal"),
+      this.isGuide ? h.guideLineColor : b(t.has(this) ? "bold" : "normal"),
       e
     );
   }
@@ -379,21 +394,21 @@ class V {
     this.forEachHandle((e) => e.forEachVar(t));
   }
 }
-class B {
+class W {
   constructor(t, e, n) {
     this.a = new w(t), this.b = new w(e), this.c = new w(n);
   }
   contains(t) {
-    return this.distanceTo(t) <= f.closeEnough;
+    return this.distanceTo(t) <= h.closeEnough;
   }
   distanceTo(t) {
-    return Math.abs(p(t, this.c) - p(this.a, this.c));
+    return Math.abs(g(t, this.c) - g(this.a, this.c));
   }
   moveBy(t, e) {
     this.forEachHandle((n) => n.moveBy(t, e));
   }
   render(t, e) {
-    J(
+    Z(
       this.c,
       this.a,
       this.b,
@@ -411,12 +426,12 @@ class B {
     this.forEachHandle((e) => e.forEachVar(t));
   }
 }
-const $ = class $ {
-  constructor(t, e, n, s, a) {
-    this.master = t, this.transform = (c) => U(
-      O(W(c, H, this.angle), H, this.scale),
+const D = class D {
+  constructor(t, e, n, i, a) {
+    this.master = t, this.transform = (o) => J(
+      F(R(o, H, this.angle), H, this.scale),
       this
-    ), this.id = $.nextId++, this.attachers = [], this.xVar = new z(e), this.yVar = new z(n), this.angleAndSizeVecX = new z(s), this.angleAndSizeVecY = new z(0), this.addAttachers(t, a);
+    ), this.id = D.nextId++, this.attachers = [], this.xVar = new z(e), this.yVar = new z(n), this.angleAndSizeVecX = new z(i), this.angleAndSizeVecY = new z(0), this.addAttachers(t, a);
   }
   addAttachers(t, e) {
     for (const n of t.attachers)
@@ -425,7 +440,7 @@ const $ = class $ {
   addAttacher(t, e) {
     const n = new w(this.transform(t));
     this.attachers.push(n), e.constraints.add(
-      new N(n, this, t)
+      new tt(n, this, t)
     );
   }
   get x() {
@@ -463,26 +478,26 @@ const $ = class $ {
     this.size = t * this.master.size;
   }
   contains(t) {
-    const { topLeft: e, bottomRight: n } = this.master.boundingBox(), s = [
+    const { topLeft: e, bottomRight: n } = this.master.boundingBox(), i = [
       e,
       n,
       { x: e.x, y: n.y },
       { x: n.x, y: e.y }
-    ].map(this.transform), { topLeft: a, bottomRight: c } = j(s);
-    return a.x <= t.x && t.x <= c.x && a.y <= t.y && t.y <= c.y;
+    ].map(this.transform), { topLeft: a, bottomRight: o } = K(i);
+    return a.x <= t.x && t.x <= o.x && o.y <= t.y && t.y <= a.y;
   }
   distanceTo(t) {
-    return p(t, this);
+    return g(t, this);
   }
   moveBy(t, e) {
     this.x += t, this.y += e, this.forEachHandle((n) => n.moveBy(t, e));
   }
   render(t, e, n = 0) {
-    this.master.render((s) => e(this.transform(s)), n + 1), n === 1 && this.attachers.forEach((s, a) => {
+    this.master.render((i) => e(this.transform(i)), n + 1), n === 1 && this.attachers.forEach((i, a) => {
       A(
         e(this.transform(this.master.attachers[a])),
-        e(s),
-        f.instanceSideAttacherColor
+        e(i),
+        h.instanceSideAttacherColor
       );
     });
   }
@@ -496,11 +511,14 @@ const $ = class $ {
     t(this.xVar), t(this.yVar), t(this.angleAndSizeVecX), t(this.angleAndSizeVecY), this.forEachHandle((e) => e.forEachVar(t));
   }
 };
-$.nextId = 0;
-let m = $;
-class ht {
+D.nextId = 0;
+let p = D;
+class nt {
   constructor() {
-    this.things = [], this.attachers = [], this.constraints = new X(), this.selection = /* @__PURE__ */ new Set();
+    this.things = [], this.attachers = [], this.constraints = new U(), this.selection = /* @__PURE__ */ new Set();
+  }
+  clear() {
+    this.things = [], this.attachers = [], this.constraints.clear(), this.selection.clear();
   }
   isEmpty() {
     return this.things.length === 0;
@@ -510,69 +528,72 @@ class ht {
   }
   render(t, e = 0) {
     this.things.forEach((n) => {
-      n instanceof m ? n.render(this.selection, t, e + 1) : n.render(this.selection, t);
+      n instanceof p ? n.render(this.selection, t, e + 1) : n.render(this.selection, t);
     }), e === 0 && this.attachers.forEach(
-      (n) => n.render(this.selection, t, f.masterSideAttacherColor)
+      (n) => n.render(this.selection, t, h.masterSideAttacherColor)
     );
   }
-  addInstance(t, { x: e, y: n }, s) {
-    t !== this && this.things.push(new m(t, e, n, s, this));
+  addInstance(t, { x: e, y: n }, i) {
+    if (t === this)
+      return null;
+    const a = new p(t, e, n, i, this);
+    return this.things.push(a), a;
   }
   resizeInstanceAt(t, e) {
     const n = this.thingAt(t);
-    if (!(n instanceof m))
+    if (!(n instanceof p))
       return !1;
     n.scale *= e;
-    for (const s of n.attachers) {
-      const { x: a, y: c } = O(s, n, e);
-      s.x = a, s.y = c;
+    for (const i of n.attachers) {
+      const { x: a, y: o } = F(i, n, e);
+      i.x = a, i.y = o;
     }
     return !0;
   }
   rotateInstanceAt(t, e) {
     const n = this.thingAt(t);
-    if (!(n instanceof m))
+    if (!(n instanceof p))
       return !1;
     n.angle += e;
-    for (const s of n.attachers) {
-      const { x: a, y: c } = W(s, n, e);
-      s.x = a, s.y = c;
+    for (const i of n.attachers) {
+      const { x: a, y: o } = R(i, n, e);
+      i.x = a, i.y = o;
     }
     return !0;
   }
-  addLine(t, e) {
-    const n = new V(t, e);
-    this.mergeAndAddImplicitConstraints(n.a), this.mergeAndAddImplicitConstraints(n.b);
-    for (const s of this.things)
-      s.forEachHandle((a) => {
-        a !== n.a && a !== n.b && n.contains(a) && this.constraints.add(new D(a, n.a, n.b));
+  addLine(t, e, n = !1) {
+    const i = new V(t, e, n);
+    n || (this.mergeAndAddImplicitConstraints(i.a), this.mergeAndAddImplicitConstraints(i.b));
+    for (const a of this.things)
+      a.forEachHandle((o) => {
+        o !== i.a && o !== i.b && i.contains(o) && this.constraints.add(new T(o, i.a, i.b));
       });
-    this.things.push(n);
+    return this.things.push(i), i;
   }
   addArc(t, e, n) {
-    const s = new B(t, e, n);
-    this.mergeAndAddImplicitConstraints(s.c), this.mergeAndAddImplicitConstraints(s.a), this.mergeAndAddImplicitConstraints(s.b), this.constraints.add(
-      new q(s.a, s.c, s.b, s.c)
+    const i = new W(t, e, n);
+    this.mergeAndAddImplicitConstraints(i.c), this.mergeAndAddImplicitConstraints(i.a), this.mergeAndAddImplicitConstraints(i.b), this.constraints.add(
+      new q(i.a, i.c, i.b, i.c)
     );
     for (const a of this.things)
-      a.forEachHandle((c) => {
-        c !== s.a && c !== s.b && c !== s.c && s.contains(c) && this.constraints.add(
-          new L(c, s.a, s.b, s.c)
+      a.forEachHandle((o) => {
+        o !== i.a && o !== i.b && o !== i.c && i.contains(o) && this.constraints.add(
+          new B(o, i.a, i.b, i.c)
         );
       });
-    this.things.push(s);
+    return this.things.push(i), i;
   }
   mergeAndAddImplicitConstraints(t) {
     const e = /* @__PURE__ */ new Set();
     for (const n of this.things)
-      n.forEachHandle((s) => {
-        s !== t && s.contains(t) && (this.replaceHandle(s, t), e.add(n));
+      n.forEachHandle((i) => {
+        i !== t && i.contains(t) && (this.replaceHandle(i, t), e.add(n));
       });
     for (const n of this.things)
       e.has(n) || !n.contains(t) || (n instanceof V ? this.constraints.add(
-        new D(t, n.a, n.b)
-      ) : n instanceof B && this.constraints.add(
-        new L(t, n.a, n.b, n.c)
+        new T(t, n.a, n.b)
+      ) : n instanceof W && this.constraints.add(
+        new B(t, n.a, n.b, n.c)
       ));
   }
   replaceHandle(t, e) {
@@ -586,34 +607,36 @@ class ht {
     const e = this.thingsForOperation(t);
     if (e.size === 0)
       return !1;
-    for (const n of e)
-      n instanceof V && this.constraints.add(new ot(n.a, n.b));
-    return this.selection.clear(), !0;
+    let n = !1;
+    for (const i of e)
+      i instanceof V && (this.constraints.add(new yt(i.a, i.b)), n = !0);
+    return this.selection.clear(), n;
   }
   equalDistance() {
-    let t = null;
-    for (const e of this.selection)
-      e instanceof V && (t && this.constraints.add(
-        new q(t.a, t.b, e.a, e.b)
-      ), t = e);
-    this.selection.clear();
+    let t = !1, e = null;
+    for (const n of this.selection)
+      n instanceof V && (e && (this.constraints.add(
+        new q(e.a, e.b, n.a, n.b)
+      ), t = !0), e = n);
+    return this.selection.clear(), t;
   }
   horizontalOrVertical(t) {
     const e = this.thingsForOperation(t);
     if (e.size === 0)
       return !1;
-    for (const n of e)
-      n instanceof V && this.constraints.add(
-        new rt(n.a, n.b)
-      );
-    return this.selection.clear(), !0;
+    let n = !1;
+    for (const i of e)
+      i instanceof V && (this.constraints.add(
+        new ut(i.a, i.b)
+      ), n = !0);
+    return this.selection.clear(), n;
   }
   fullSize(t) {
-    const e = this.thingsForOperation(t);
-    for (const n of e)
-      if (n instanceof m)
-        return this.constraints.add(new ct(n)), !0;
-    return !1;
+    let e = !1;
+    const n = this.thingsForOperation(t);
+    for (const i of n)
+      i instanceof p && (this.constraints.add(new et(i)), e = !0);
+    return e;
   }
   snap(t, e) {
     const n = this.handleAt(t, e);
@@ -621,35 +644,35 @@ class ht {
       t.x = n.x, t.y = n.y;
       return;
     }
-    const s = new X(), a = new w(t), c = /* @__PURE__ */ new Set();
-    a.forEachVar((l) => c.add(l));
-    for (const l of this.things)
-      this.selection.has(l) || !l.contains(t) || (l instanceof V ? s.add(
-        new D(a, l.a, l.b)
-      ) : l instanceof B && s.add(
-        new L(a, l.a, l.b, l.c)
+    const i = new U(), a = new w(t), o = /* @__PURE__ */ new Set();
+    a.forEachVar((d) => o.add(d));
+    for (const d of this.things)
+      this.selection.has(d) || !d.contains(t) || (d instanceof V ? i.add(
+        new T(a, d.a, d.b)
+      ) : d instanceof W && i.add(
+        new B(a, d.a, d.b, d.c)
       ));
-    for (; s.relax(c); )
+    for (; i.relax(o); )
       ;
     t.x = a.x, t.y = a.y;
   }
   handleAt(t, e = null) {
-    let n = 1 / 0, s = null;
+    let n = 1 / 0, i = null;
     for (const a of this.things)
-      a.forEachHandle((c) => {
-        if (c !== e && c.contains(t)) {
-          const l = p(t, c);
-          l < n && (s = c, n = l);
+      a.forEachHandle((o) => {
+        if (o !== e && o.contains(t)) {
+          const d = g(t, o);
+          d < n && (i = o, n = d);
         }
       });
-    return s;
+    return i;
   }
   thingAt(t) {
     let e = 1 / 0, n = null;
-    for (const s of this.things)
-      if (s.contains(t)) {
-        const a = s.distanceTo(t);
-        a < e && (n = s, e = a);
+    for (const i of this.things)
+      if (i.contains(t)) {
+        const a = i.distanceTo(t);
+        a < e && (n = i, e = a);
       }
     return n;
   }
@@ -671,12 +694,12 @@ class ht {
     this.center(), this.selection.clear();
   }
   center() {
-    const { topLeft: t, bottomRight: e } = this.boundingBox(), n = -(t.x + e.x) / 2, s = -(t.y + e.y) / 2;
+    const { topLeft: t, bottomRight: e } = this.boundingBox(), n = -(t.x + e.x) / 2, i = -(t.y + e.y) / 2;
     for (const a of this.getPositions())
-      a.x += n, a.y += s;
+      a.x += n, a.y += i;
   }
   boundingBox() {
-    return j(this.getPositions());
+    return K(this.getPositions());
   }
   get size() {
     let t = 0;
@@ -691,13 +714,13 @@ class ht {
   getHandles(t) {
     const e = /* @__PURE__ */ new Set();
     for (const n of t)
-      n.forEachHandle((s) => e.add(s));
+      n.forEachHandle((i) => e.add(i));
     return e;
   }
   getHandle(t) {
     let e, n = 0;
-    for (const s of this.things)
-      s.forEachHandle((a) => {
+    for (const i of this.things)
+      i.forEachHandle((a) => {
         n++ === t && (e = a);
       });
     return e;
@@ -705,7 +728,7 @@ class ht {
   getPositions() {
     const t = this.getHandles(this.things);
     for (const e of this.things)
-      e instanceof m && t.add(e);
+      e instanceof p && t.add(e);
     return t;
   }
   getVars() {
@@ -716,278 +739,1425 @@ class ht {
   }
   onAttacherAdded(t, e) {
     for (const n of this.things)
-      n instanceof m && n.master === t && n.addAttacher(e, this);
+      n instanceof p && n.master === t && n.addAttacher(e, this);
   }
   onAttacherRemoved(t, e) {
     this.constraints.forEach((n) => {
-      if (n instanceof N && n.masterPoint === e) {
-        const { instance: s, instancePoint: a } = n;
-        s.attachers = s.attachers.filter(
-          (c) => c !== a
+      if (n instanceof tt && n.masterPoint === e) {
+        const { instance: i, instancePoint: a } = n;
+        i.attachers = i.attachers.filter(
+          (o) => o !== a
         ), this.constraints.remove(n);
       }
     });
   }
 }
-st(document.getElementById("canvas"));
-const r = {
+const ft = {
+  __map: !0,
+  values: [
+    [
+      " ",
+      []
+    ],
+    [
+      "A",
+      [
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 2,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 3,
+            y: 4
+          },
+          start: {
+            x: 1,
+            y: 4
+          }
+        }
+      ]
+    ],
+    [
+      "B",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          center: {
+            x: 2,
+            y: 2
+          },
+          command: "arc",
+          end: 1.6510788551694173,
+          radius: 2,
+          start: -1.7538223513576943
+        },
+        {
+          center: {
+            target: {},
+            x: 2,
+            y: 6
+          },
+          command: "arc",
+          end: 1.6088526566614771,
+          radius: 2,
+          start: -1.6497448846816716
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 4
+          },
+          start: {
+            x: 0,
+            y: 4
+          }
+        }
+      ]
+    ],
+    [
+      "C",
+      [
+        {
+          center: {
+            target: {},
+            x: 2,
+            y: 6
+          },
+          command: "arc",
+          end: -3.140173248422545,
+          radius: 2,
+          start: -0.007871078049560942
+        },
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 2
+          },
+          start: {
+            x: 0,
+            y: 6
+          }
+        },
+        {
+          center: {
+            target: {},
+            x: 2,
+            y: 2
+          },
+          command: "arc",
+          end: 0,
+          radius: 2,
+          start: 3.04931868620317
+        }
+      ]
+    ],
+    [
+      "D",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          center: {
+            target: {},
+            x: 0,
+            y: 4
+          },
+          command: "arc",
+          end: 1.5707963267948966,
+          radius: 4,
+          start: -1.5839465742972498
+        }
+      ]
+    ],
+    [
+      "E",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 3,
+            y: 4
+          },
+          start: {
+            x: 0,
+            y: 4
+          }
+        }
+      ]
+    ],
+    [
+      "F",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 3,
+            y: 4
+          },
+          start: {
+            x: 0,
+            y: 4
+          }
+        }
+      ]
+    ],
+    [
+      "G",
+      [
+        {
+          center: {
+            x: 2,
+            y: 6
+          },
+          command: "arc",
+          end: 3.141592653589793,
+          radius: 2,
+          start: 0
+        },
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 2
+          },
+          start: {
+            x: 0,
+            y: 6
+          }
+        },
+        {
+          center: {
+            x: 2,
+            y: 2
+          },
+          command: "arc",
+          end: 0,
+          radius: 2,
+          start: 3.106747414219492
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 3
+          },
+          start: {
+            x: 4,
+            y: 2
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 3
+          },
+          start: {
+            x: 2,
+            y: 3
+          }
+        }
+      ]
+    ],
+    [
+      "H",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 4
+          },
+          start: {
+            x: 0,
+            y: 4
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 4,
+            y: 8
+          }
+        }
+      ]
+    ],
+    [
+      "I",
+      [
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 0
+          },
+          start: {
+            x: 2,
+            y: 8
+          }
+        }
+      ]
+    ],
+    [
+      "J",
+      [
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 1
+          },
+          start: {
+            x: 2,
+            y: 8
+          }
+        },
+        {
+          center: {
+            target: {},
+            x: 1,
+            y: 1
+          },
+          command: "arc",
+          end: 0.03160956695399596,
+          radius: 1,
+          start: -2.4475630944962603
+        }
+      ]
+    ],
+    [
+      "K",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 3
+          },
+          start: {
+            x: 4,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 1,
+            y: 4
+          }
+        }
+      ]
+    ],
+    [
+      "L",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        }
+      ]
+    ],
+    [
+      "M",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 4
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 2,
+            y: 4
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 4,
+            y: 8
+          }
+        }
+      ]
+    ],
+    [
+      "N",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 4,
+            y: 0
+          }
+        }
+      ]
+    ],
+    [
+      "O",
+      [
+        {
+          center: {
+            x: 2,
+            y: 6
+          },
+          command: "arc",
+          end: 3.141592653589793,
+          radius: 2,
+          start: 0
+        },
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 2
+          },
+          start: {
+            x: 0,
+            y: 6
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 2
+          },
+          start: {
+            x: 4,
+            y: 6
+          }
+        },
+        {
+          center: {
+            x: 2,
+            y: 2
+          },
+          command: "arc",
+          end: 0.02388313118406498,
+          radius: 2,
+          start: 3.1354718854624473
+        }
+      ]
+    ],
+    [
+      "P",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 4
+          },
+          start: {
+            x: 0,
+            y: 4
+          }
+        },
+        {
+          center: {
+            x: 2,
+            y: 6
+          },
+          command: "arc",
+          end: 1.5707963267948966,
+          radius: 2,
+          start: -1.5731239338803342
+        }
+      ]
+    ],
+    [
+      "Q",
+      [
+        {
+          center: {
+            x: 2,
+            y: 6
+          },
+          command: "arc",
+          end: 3.141592653589793,
+          radius: 2,
+          start: -0.07706266528326922
+        },
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 2
+          },
+          start: {
+            x: 0,
+            y: 6
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 2
+          },
+          start: {
+            x: 4,
+            y: 6
+          }
+        },
+        {
+          center: {
+            x: 2,
+            y: 2
+          },
+          command: "arc",
+          end: 0,
+          radius: 2,
+          start: 3.141592653589793
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 2
+          },
+          start: {
+            x: 4,
+            y: 0
+          }
+        }
+      ]
+    ],
+    [
+      "R",
+      [
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 4
+          },
+          start: {
+            x: 0,
+            y: 4
+          }
+        },
+        {
+          center: {
+            x: 2,
+            y: 6
+          },
+          command: "arc",
+          end: 1.5954287038581172,
+          radius: 2,
+          start: -1.5815161841573633
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 2,
+            y: 4
+          }
+        }
+      ]
+    ],
+    [
+      "S",
+      [
+        {
+          center: {
+            x: 2,
+            y: 6
+          },
+          command: "arc",
+          end: -1.5508014915099348,
+          radius: 2,
+          start: 0.2790589122600394
+        },
+        {
+          center: {
+            x: 2,
+            y: 2
+          },
+          command: "arc",
+          end: 1.4038768231185412,
+          radius: 2,
+          start: 3.056962552531346
+        }
+      ]
+    ],
+    [
+      "T",
+      [
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 0
+          },
+          start: {
+            x: 2,
+            y: 8
+          }
+        }
+      ]
+    ],
+    [
+      "U",
+      [
+        {
+          center: {
+            x: 2,
+            y: 2
+          },
+          command: "arc",
+          end: 0,
+          radius: 2,
+          start: 3.141592653589793
+        },
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 2
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 2
+          },
+          start: {
+            x: 4,
+            y: 8
+          }
+        }
+      ]
+    ],
+    [
+      "V",
+      [
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 0
+          },
+          start: {
+            x: 4,
+            y: 8
+          }
+        }
+      ]
+    ],
+    [
+      "W",
+      [
+        {
+          command: "line",
+          end: {
+            x: 1,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 4
+          },
+          start: {
+            x: 1,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 3,
+            y: 0
+          },
+          start: {
+            x: 2,
+            y: 4
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 3,
+            y: 0
+          }
+        }
+      ]
+    ],
+    [
+      "X",
+      [
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        }
+      ]
+    ],
+    [
+      "Y",
+      [
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 4
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 4
+          },
+          start: {
+            x: 4,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 2,
+            y: 0
+          },
+          start: {
+            x: 2,
+            y: 4
+          }
+        }
+      ]
+    ],
+    [
+      "Z",
+      [
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 8
+          },
+          start: {
+            x: 0,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 0,
+            y: 0
+          },
+          start: {
+            x: 4,
+            y: 8
+          }
+        },
+        {
+          command: "line",
+          end: {
+            x: 4,
+            y: 0
+          },
+          start: {
+            x: 0,
+            y: 0
+          }
+        }
+      ]
+    ]
+  ]
+}, mt = 1, gt = {
+  data: ft,
+  version: mt
+};
+function st(s, t, e = h.fontScale) {
+  for (const n of t)
+    switch (n.command) {
+      case "line": {
+        const i = O(n.start, e), a = O(n.end, e);
+        s.addLine(i, a);
+        break;
+      }
+      case "arc": {
+        const i = O(n.center, e), a = n.radius * e;
+        s.addArc(
+          j(i, n.end, a),
+          j(i, n.start, a),
+          i
+        );
+        break;
+      }
+      default:
+        console.log("unsupported letter-drawing command", n);
+        break;
+    }
+}
+const it = new Map(
+  gt.data.values
+), $ = /* @__PURE__ */ new Map();
+for (const [s, t] of it) {
+  const e = new nt();
+  st(e, t, h.fontScale);
+  const n = e.addLine(
+    { x: -h.kerning * h.fontScale, y: 0 },
+    { x: (4 + h.kerning) * h.fontScale, y: 0 },
+    !0
+  );
+  e.attachers.push(n.a, n.b), $.set(s, e);
+}
+function O({ x: s, y: t }, e) {
+  return { x: s * e, y: t * e };
+}
+function j({ x: s, y: t }, e, n) {
+  return {
+    x: s + n * Math.cos(e),
+    y: t + n * Math.sin(e)
+  };
+}
+lt(document.getElementById("canvas"));
+const c = {
   x: 1 / 0,
   y: 1 / 0,
   down: !1
-}, v = {};
-let h = null, x = null;
-const d = {
+}, S = {};
+let l = null, f = null;
+const x = {
   center: { x: 0, y: 0 },
   scale: 1,
   reset() {
     this.scale = 1, this.centerAt({ x: 0, y: 0 });
   },
-  centerAt({ x: i, y: t }) {
-    this.center.x = i, this.center.y = t;
+  centerAt({ x: s, y: t }) {
+    this.center.x = s, this.center.y = t;
   },
-  setScale(i) {
-    this.scale = i;
+  setScale(s) {
+    this.scale = s;
   }
 };
-d.reset();
-function E({ x: i, y: t }) {
+x.reset();
+function v({ x: s, y: t }) {
   return {
-    x: (i - d.center.x) * d.scale + innerWidth / 2,
-    y: -(t - d.center.y) * d.scale + innerHeight / 2
+    x: (s - x.center.x) * x.scale + innerWidth / 2,
+    y: -(t - x.center.y) * x.scale + innerHeight / 2
   };
 }
-function Z({ x: i, y: t }) {
+function at({ x: s, y: t }) {
   return {
-    x: (i - innerWidth / 2) / d.scale + d.center.x,
-    y: d.center.y - (t - innerHeight / 2) / d.scale
+    x: (s - innerWidth / 2) / x.scale + x.center.x,
+    y: x.center.y - (t - innerHeight / 2) / x.scale
   };
 }
-const S = [];
-for (let i = 0; i < 10; i++)
-  S.push(new ht());
-let o = S[1];
-function lt(i) {
+const E = [];
+for (let s = 0; s < 10; s++)
+  E.push(new nt());
+let r;
+function Y(s) {
   k(() => {
-    o.leave(), d.reset(), o = i, window.drawing = i;
+    r == null || r.leave(), x.reset(), r = s, window.drawing = s;
   });
 }
-function _() {
-  v[" "] && (y("solve"), o.relax()), dt(), requestAnimationFrame(_);
-}
-_();
-function dt() {
-  if (f.autoSolve) {
-    const e = performance.now();
-    for (; performance.now() - e < 20 && o.relax(); )
+Y(E[1]);
+function rt() {
+  if (h.autoSolve) {
+    const s = performance.now();
+    for (; performance.now() - s < 20 && r.relax(); )
       ;
-  }
-  switch (at(), !h && o.isEmpty() ? ft() : o.render(E), h == null ? void 0 : h.type) {
+  } else
+    S[" "] && !r.isEmpty() && (m("solve"), r.relax());
+  pt(), requestAnimationFrame(rt);
+}
+rt();
+function pt() {
+  xt(), !l && r.isEmpty() ? wt() : r.render(v), bt(), At(), St();
+}
+function wt() {
+  const s = innerWidth / 100, t = (e, n) => A(e, n, b(), v);
+  t({ x: -7 * s, y: -4 * s }, { x: -7 * s, y: 4 * s }), t({ x: -3 * s, y: -4 * s }, { x: -3 * s, y: 4 * s }), t({ x: -3 * s, y: 4 * s }, { x: 2 * s, y: -4 * s }), t({ x: 2 * s, y: -4 * s }, { x: 2 * s, y: 4 * s }), t({ x: 6 * s, y: -4 * s }, { x: 6 * s, y: 4 * s }), t({ x: 6 * s, y: 1 * s }, { x: 10 * s, y: 4 * s }), t({ x: 8 * s, y: 2 * s }, { x: 10 * s, y: -4 * s });
+}
+function bt() {
+  switch (l == null ? void 0 : l.type) {
     case "line":
       A(
-        h.start,
-        r,
+        l.start,
+        c,
         b(),
-        E
+        v
       );
       break;
     case "arc":
-      h.positions.length > 1 && J(
-        h.positions[0],
-        h.positions[1],
-        r,
+      l.positions.length > 1 && Z(
+        l.positions[0],
+        l.positions[1],
+        c,
         b(),
-        E
+        v
       );
       break;
   }
-  const i = 15, t = E(r);
-  if (A(
-    { x: t.x - i, y: t.y },
-    { x: t.x + i, y: t.y },
+}
+function At() {
+  const s = v(c);
+  A(
+    { x: s.x - h.crosshairsSize, y: s.y },
+    { x: s.x + h.crosshairsSize, y: s.y },
     b("bold")
   ), A(
-    { x: t.x, y: t.y - i },
-    { x: t.x, y: t.y + i },
+    { x: s.x, y: s.y - h.crosshairsSize },
+    { x: s.x, y: s.y + h.crosshairsSize },
     b("bold")
-  ), f.debug) {
-    const e = E({ x: 0, y: 0 });
+  );
+}
+function St() {
+  if (h.debug) {
+    const s = v({ x: 0, y: 0 });
     A(
-      { x: 0, y: e.y },
-      { x: innerWidth, y: e.y },
-      f.axisColor
+      { x: 0, y: s.y },
+      { x: innerWidth, y: s.y },
+      h.axisColor
     ), A(
-      { x: e.x, y: 0 },
-      { x: e.x, y: innerHeight },
-      f.axisColor
-    ), K(
-      E(r),
-      `(${r.x.toFixed(0)}, ${r.y.toFixed(0)})`
+      { x: s.x, y: 0 },
+      { x: s.x, y: innerHeight },
+      h.axisColor
+    ), _(
+      v(c),
+      `(${c.x.toFixed(0)}, ${c.y.toFixed(0)})`
     );
   }
 }
-function ft() {
-  const i = innerWidth / 100, t = (e, n) => A(e, n, b(), E);
-  t({ x: -7 * i, y: -4 * i }, { x: -7 * i, y: 4 * i }), t({ x: -3 * i, y: -4 * i }, { x: -3 * i, y: 4 * i }), t({ x: -3 * i, y: 4 * i }, { x: 2 * i, y: -4 * i }), t({ x: 2 * i, y: -4 * i }, { x: 2 * i, y: 4 * i }), t({ x: 6 * i, y: -4 * i }, { x: 6 * i, y: 4 * i }), t({ x: 6 * i, y: 1 * i }, { x: 10 * i, y: 4 * i }), t({ x: 8 * i, y: 2 * i }, { x: 10 * i, y: -4 * i });
-}
-window.addEventListener("keydown", (i) => {
-  if (v[i.key] = !0, "Digit0" <= i.code && i.code <= "Digit9") {
-    const t = parseInt(i.code.slice(5)), e = S[t];
-    v.Shift ? e.isEmpty() || (y("instantiate #" + t), o.addInstance(e, r, innerHeight / 5 / d.scale)) : (y("drawing #" + t), lt(e));
+window.addEventListener("keydown", (s) => {
+  if (S[s.key] = !0, "Digit0" <= s.code && s.code <= "Digit9") {
+    const t = parseInt(s.code.slice(5)), e = E[t];
+    e === r || (S.Shift ? e.isEmpty() || (m("instantiate #" + t), r.addInstance(e, c, innerHeight / 5 / x.scale)) : (m("drawing #" + t), Y(e)));
     return;
   }
-  switch (i.key) {
-    case "Backspace":
-      o.delete(r) && (mt(), y("delete"), o.isEmpty() && k(() => d.reset()));
-      break;
-    case "l":
-      o.fixedDistance(r) && y("fixed distance");
-      break;
-    case "e":
-      y("equal length"), o.equalDistance();
-      break;
-    case "h":
-      o.horizontalOrVertical(r) && y("HorV");
-      break;
-    case "=":
-      o.resizeInstanceAt(r, 1.05) || o.isEmpty() || k(() => {
-        d.scale = Math.min(d.scale + 0.1, 10), y("scale=" + d.scale.toFixed(1));
-      });
-      break;
-    case "-":
-      o.resizeInstanceAt(r, 0.95) || o.isEmpty() || k(() => {
-        d.scale = Math.max(d.scale - 0.1, 0.1), y("scale=" + d.scale.toFixed(1));
-      });
-      break;
-    case "q":
-      o.rotateInstanceAt(r, -5 * Math.PI / 180);
-      break;
-    case "w":
-      o.rotateInstanceAt(r, 5 * Math.PI / 180);
-      break;
+  switch (s.key) {
     case "f":
-      f.flicker = !f.flicker;
-      break;
-    case "S":
-      f.autoSolve = !f.autoSolve, y(`auto-solve ${f.autoSolve ? "on" : "off"}`);
-      break;
-    case "s":
-      o.fullSize(r) && y("full size");
-      break;
-    case "A":
-      yt(r);
-      break;
-    case "c":
-      o.isEmpty() || (y("re-center"), k(() => {
-        d.centerAt(r);
-      }));
-      break;
+      h.flicker = !h.flicker;
+      return;
     case "d":
-      f.debug = !f.debug, y(`debug ${f.debug ? "on" : "off"}`);
+      h.debug = !h.debug, m(`debug ${h.debug ? "on" : "off"}`);
+      return;
+    case "S":
+      h.autoSolve = !h.autoSolve, m(`auto-solve ${h.autoSolve ? "on" : "off"}`);
+      return;
+  }
+  if (!r.isEmpty())
+    switch (s.key) {
+      case "Backspace":
+        r.delete(c) && (kt(), m("delete"), r.isEmpty() && k(() => x.reset()));
+        break;
+      case "l":
+        r.fixedDistance(c) && m("fixed distance");
+        break;
+      case "e":
+        r.equalDistance() && m("equal length");
+        break;
+      case "h":
+        r.horizontalOrVertical(c) && m("HorV");
+        break;
+      case "=":
+        r.resizeInstanceAt(c, 1.05) || k(() => {
+          x.scale = Math.min(x.scale + 0.1, 10), m("scale=" + x.scale.toFixed(1));
+        });
+        break;
+      case "-":
+        r.resizeInstanceAt(c, 0.95) || k(() => {
+          x.scale = Math.max(x.scale - 0.1, 0.1), m("scale=" + x.scale.toFixed(1));
+        });
+        break;
+      case "q":
+        r.rotateInstanceAt(c, -5 * Math.PI / 180);
+        break;
+      case "w":
+        r.rotateInstanceAt(c, 5 * Math.PI / 180);
+        break;
+      case "s":
+        r.fullSize(c) && m("full size");
+        break;
+      case "A":
+        Vt(c);
+        break;
+      case "c":
+        m("re-center"), k(() => {
+          x.centerAt(c);
+        });
+        break;
+    }
+});
+window.addEventListener("keyup", (s) => {
+  switch (delete S[s.key], s.key) {
+    case "Meta":
+      vt();
+      break;
+    case "a":
+      (l == null ? void 0 : l.type) === "arc" && (l = null);
       break;
   }
 });
-window.addEventListener("keyup", (i) => {
-  delete v[i.key], i.key === "Meta" ? gt() : i.key === "a" ? (h == null ? void 0 : h.type) === "arc" && (h = null) : i.key === " " && y("");
-});
-g.addEventListener("pointerdown", (i) => {
-  if (g.setPointerCapture(i.pointerId), i.preventDefault(), i.stopPropagation(), r.down = !0, v.Shift) {
-    o.toggleSelections(r);
+y.addEventListener("pointerdown", (s) => {
+  if (y.setPointerCapture(s.pointerId), s.preventDefault(), s.stopPropagation(), c.down = !0, S.Shift) {
+    r.toggleSelections(c);
     return;
-  } else if (v.Meta) {
-    ut();
+  } else if (S.Meta) {
+    Et();
     return;
-  } else if (v.a) {
-    xt();
+  } else if (S.a) {
+    Mt();
     return;
   }
-  x = null;
-  const t = o.handleAt(r);
+  f = null;
+  const t = r.handleAt(c);
   if (t) {
-    x = { thing: t, offset: { x: 0, y: 0 } };
+    f = { thing: t, offset: { x: 0, y: 0 } };
     return;
   }
-  o.clearSelection();
-  const e = o.thingAt(r);
-  e && (e instanceof m ? x = { thing: e, offset: Y(r, e) } : o.toggleSelected(e));
+  r.clearSelection();
+  const e = r.thingAt(c);
+  e instanceof p ? f = { thing: e, offset: G(c, e) } : e && r.toggleSelected(e);
 });
-g.addEventListener("pointermove", (i) => {
-  const t = { x: r.x, y: r.y };
-  if ({ x: r.x, y: r.y } = Z({
-    x: i.layerX,
-    y: i.layerY
-  }), r.down && !o.isEmpty() && !h && !x && o.selection.size === 0) {
-    const e = r.x - t.x, n = r.y - t.y;
+y.addEventListener("pointermove", (s) => {
+  s.metaKey || delete S.Meta;
+  const t = { x: c.x, y: c.y };
+  if ({ x: c.x, y: c.y } = at({
+    x: s.layerX,
+    y: s.layerY
+  }), c.down && !r.isEmpty() && !l && !f && r.selection.size === 0) {
+    const e = c.x - t.x, n = c.y - t.y;
     k(() => {
-      d.center.x -= e * d.scale, d.center.y -= n * d.scale;
+      x.center.x -= e, x.center.y -= n;
     });
     return;
   }
-  if (o.snap(r, x ? x.thing : null), r.down && o.selection.size > 0) {
-    const e = Y(r, t);
-    o.moveSelection(e.x, e.y);
+  if (r.snap(c, f ? f.thing : null), c.down && r.selection.size > 0) {
+    const e = G(c, t);
+    r.moveSelection(e.x, e.y);
   }
-  if (x) {
-    const e = r.x - x.offset.x, n = r.y - x.offset.y;
-    x.thing.moveBy(e - x.thing.x, n - x.thing.y);
+  if (f) {
+    const e = c.x - f.offset.x, n = c.y - f.offset.y;
+    f.thing.moveBy(e - f.thing.x, n - f.thing.y);
   }
 });
-g.addEventListener("pointerup", (i) => {
-  g.releasePointerCapture(i.pointerId), r.down = !1, (x == null ? void 0 : x.thing) instanceof w && o.mergeAndAddImplicitConstraints(x.thing), x = null;
+y.addEventListener("pointerup", (s) => {
+  y.releasePointerCapture(s.pointerId), c.down = !1, (f == null ? void 0 : f.thing) instanceof w && r.mergeAndAddImplicitConstraints(f.thing), f = null;
 });
-function ut() {
-  const i = { x: r.x, y: r.y };
-  (h == null ? void 0 : h.type) === "line" && o.addLine(h.start, i), h = {
+function Et() {
+  const s = { x: c.x, y: c.y };
+  (l == null ? void 0 : l.type) === "line" && r.addLine(l.start, s), l = {
     type: "line",
-    start: i
+    start: s
   };
 }
-function gt() {
-  h = null;
+function vt() {
+  l = null;
 }
-function xt() {
-  if ((h == null ? void 0 : h.type) !== "arc" && (h = { type: "arc", positions: [] }), h.positions.push({ x: r.x, y: r.y }), h.positions.length === 3) {
-    const [i, t, e] = h.positions;
-    o.addArc(t, e, i), h = null;
+function Mt() {
+  if ((l == null ? void 0 : l.type) !== "arc" && (l = { type: "arc", positions: [] }), l.positions.push({ x: c.x, y: c.y }), l.positions.length === 3) {
+    const [s, t, e] = l.positions;
+    r.addArc(t, e, s), l = null;
   }
 }
-function k(i) {
-  const t = E(r);
-  i(), { x: r.x, y: r.y } = Z(t);
+function k(s) {
+  const t = v(c);
+  s(), { x: c.x, y: c.y } = at(t);
 }
-function yt(i) {
-  const t = o.handleAt(i);
-  t && (o.attachers.includes(t) ? (tt(o, t), y("remove attacher")) : (pt(o, t), y("add attacher")));
+function Vt(s) {
+  const t = r.handleAt(s);
+  t && (r.attachers.includes(t) ? (ot(r, t), m("remove attacher")) : (zt(r, t), m("add attacher")));
 }
-function tt(i, t) {
-  const e = i.attachers.indexOf(t);
-  o.attachers.splice(e, 1);
-  for (const n of S)
-    n.onAttacherRemoved(i, t);
+function ot(s, t) {
+  const e = s.attachers.indexOf(t);
+  r.attachers.splice(e, 1);
+  for (const n of E)
+    n.onAttacherRemoved(s, t);
 }
-function pt(i, t) {
-  i.attachers.push(t);
-  for (const e of S)
-    e.onAttacherAdded(i, t);
+function zt(s, t) {
+  s.attachers.push(t);
+  for (const e of E)
+    e.onAttacherAdded(s, t);
 }
-function mt() {
-  for (; bt(); )
+function kt() {
+  for (; Pt(); )
     ;
 }
-function bt() {
-  const i = /* @__PURE__ */ new Set(), t = /* @__PURE__ */ new Set();
-  for (const e of S)
+function Pt() {
+  const s = /* @__PURE__ */ new Set(), t = /* @__PURE__ */ new Set();
+  for (const e of [...E, ...$.values()])
     for (const n of e.things)
-      i.add(n), n.forEachHandle((s) => t.add(s));
-  for (const e of S) {
+      s.add(n), n.forEachHandle((i) => t.add(i));
+  for (const e of E) {
     let n = !1;
-    for (const s of e.attachers)
-      t.has(s) || (tt(e, s), n = !0);
+    for (const i of e.attachers)
+      t.has(i) || (ot(e, i), n = !0);
     if (n)
       return !0;
   }
-  for (const e of S)
+  for (const e of E)
     e.constraints.forEach((n) => {
-      n.isStillValid(i, t) || e.constraints.remove(n);
+      n.isStillValid(s, t) || e.constraints.remove(n);
     });
   return !1;
 }
+function It(s) {
+  const t = it.get(s);
+  t && st(r, t);
+}
+function Ht(s, t = 1) {
+  const e = t * h.fontScale * (4 + h.kerning * 2);
+  let n = x.center.x - 0.5 * s.length * e;
+  const i = [];
+  for (let a = 0; a < s.length; a++) {
+    const o = $.get(s[a]);
+    if (o) {
+      const d = r.addInstance(
+        o,
+        { x: n, y: x.center.y },
+        o.size * t
+      );
+      r.constraints.add(new et(d, t)), i.length > 0 && r.replaceHandle(
+        d.attachers[0],
+        i.at(-1).attachers[1]
+      ), i.push(d);
+    }
+    n += e;
+  }
+}
+window.addLetter = It;
+window.letterDrawings = $;
+window.switchToDrawing = Y;
+window.write = Ht;
