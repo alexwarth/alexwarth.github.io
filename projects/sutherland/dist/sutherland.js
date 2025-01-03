@@ -526,7 +526,7 @@ const O = class O {
     this.master = t, this.transform = (c) => ct(
       J(K(c, W, this.angle), W, this.scale),
       this
-    ), this.id = O.nextId++, this.attachers = [], this.xVar = new z(e), this.yVar = new z(n), this.angleAndSizeVecX = new z(i * Math.cos(r)), this.angleAndSizeVecY = new z(r * Math.sin(r)), this.addAttachers(t, a);
+    ), this.id = O.nextId++, this.attachers = [], this.xVar = new z(e), this.yVar = new z(n), this.angleAndSizeVecX = new z(i * Math.cos(r)), this.angleAndSizeVecY = new z(i * Math.sin(r)), this.addAttachers(t, a);
   }
   addAttachers(t, e) {
     for (const n of t.attachers)
@@ -773,6 +773,7 @@ class yt {
         const c = this.addInstance(
           a.master,
           t.transform(a),
+          // move the center to the right place
           t.scale * a.size,
           t.angle + a.angle
         );
@@ -3341,7 +3342,7 @@ function Yt() {
 window.addEventListener("keydown", (s) => {
   if (S[s.key] = !0, "Digit0" <= s.code && s.code <= "Digit9") {
     const t = parseInt(s.code.slice(5)), e = M[t];
-    e === o || (S.Shift ? e.isEmpty() || (y("instantiate #" + t), o.addInstance(e, d, innerHeight / 5 / x.scale, 0)) : (y("drawing #" + t), nt(e)));
+    e === o || (S.Shift ? e.isEmpty() || (y("instantiate #" + t), o.addInstance(e, d, 0.5 * e.size / x.scale, 0)) : (y("drawing #" + t), nt(e)));
     return;
   }
   switch (s.key) {
@@ -3529,7 +3530,8 @@ function jt(s, t = 1) {
     const a = o.addInstance(
       n,
       { x: i, y: x.center.y },
-      n.size * r
+      n.size * r,
+      0
     );
     o.constraints.add(new q(a, r)), e && o.replaceHandle(a.attachers[0], e.attachers[1]), e = a;
   });
