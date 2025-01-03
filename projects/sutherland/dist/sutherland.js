@@ -3387,10 +3387,10 @@ window.addEventListener("keydown", (s) => {
         });
         break;
       case "q":
-        o.rotateInstanceAt(d, -5 * Math.PI / 180);
+        o.rotateInstanceAt(d, 5 * Math.PI / 180);
         break;
       case "w":
-        o.rotateInstanceAt(d, 5 * Math.PI / 180);
+        o.rotateInstanceAt(d, -5 * Math.PI / 180);
         break;
       case "s":
         o.fullSize(d) && y("full size");
