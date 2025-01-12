@@ -26,7 +26,7 @@ const c = {
   }
 };
 window.config = c;
-const me = Math.PI * 2;
+const ye = Math.PI * 2;
 function p(n, t) {
   return Math.sqrt(j(n, t));
 }
@@ -58,9 +58,9 @@ function kt(n) {
   };
 }
 function zt(n, t, e) {
-  return Math.sqrt(ye(n, t, e));
+  return Math.sqrt(fe(n, t, e));
 }
-function ye(n, t, e) {
+function fe(n, t, e) {
   const s = j(t, e);
   if (s == 0)
     return j(n, t);
@@ -70,11 +70,11 @@ function ye(n, t, e) {
   );
   return j(n, { x: t.x + i * (e.x - t.x), y: t.y + i * (e.y - t.y) });
 }
-function fe(n) {
+function ge(n) {
   return 1 - Math.pow(1 - n, 5);
 }
 let g, h, Vt = !1;
-function ge(n) {
+function pe(n) {
   g = n, h = g.getContext("2d"), It(), Vt = !0;
 }
 function It() {
@@ -88,14 +88,14 @@ let W = "", Ct = 0;
 function y(n) {
   Vt && (W = n, Ct = Date.now());
 }
-function pe() {
+function we() {
   if (h.clearRect(0, 0, g.width, g.height), h.lineWidth = c.lineWidth, h.lineCap = "round", W.length > 0) {
     h.font = "40px Monaco";
     const t = h.measureText(W).width, e = Date.now() - Ct;
     if (e > c.statusTimeMillis)
       W = "";
     else {
-      const s = 1 - fe(e / c.statusTimeMillis);
+      const s = 1 - ge(e / c.statusTimeMillis);
       h.fillStyle = `rgba(255,222,33,${s})`, h.fillText(W, (innerWidth - t) / 2, innerHeight - 40);
     }
   }
@@ -105,7 +105,7 @@ function tt(n) {
 }
 function Tt(n, t = E(), e = tt) {
   const s = e(n);
-  h.fillStyle = t, h.beginPath(), h.arc(s.x, s.y, h.lineWidth * 2, 0, me), h.fill();
+  h.fillStyle = t, h.beginPath(), h.arc(s.x, s.y, h.lineWidth * 2, 0, ye), h.fill();
 }
 function V(n, t, e = E(), s = tt) {
   const i = h.lineWidth;
@@ -942,7 +942,7 @@ class Ht {
     );
   }
 }
-const we = {
+const be = {
   __map: !0,
   values: [
     [
@@ -3157,11 +3157,11 @@ const we = {
       ]
     ]
   ]
-}, be = 1, Se = {
-  data: we,
-  version: be
+}, Se = 1, ve = {
+  data: be,
+  version: Se
 };
-function ve(n, t, e = c.fontScale) {
+function Ee(n, t, e = c.fontScale) {
   for (const s of t)
     switch (s.command) {
       case "line": {
@@ -3183,10 +3183,10 @@ function ve(n, t, e = c.fontScale) {
         break;
     }
 }
-const Ee = new Map(Se.data.values), nt = /* @__PURE__ */ new Map();
-for (const [n, t] of Ee) {
+const Ae = new Map(ve.data.values), nt = /* @__PURE__ */ new Map();
+for (const [n, t] of Ae) {
   const e = new Ht();
-  ve(e, t, c.fontScale);
+  Ee(e, t, c.fontScale);
   const s = e.addLine(
     { x: -c.kerning * c.fontScale, y: 0 },
     { x: (4 + c.kerning) * c.fontScale, y: 0 },
@@ -3276,26 +3276,26 @@ function Rt(n, t) {
   for (const s of Object.values(B))
     s.onAttacherRemoved(n, t);
 }
-function Ae(n, t) {
+function Pe(n, t) {
   n.attachers.push(t);
   for (const e of Object.values(B))
     e.onAttacherAdded(n, t);
 }
-function Pe() {
+function Me() {
   if (c.autoSolve) {
     const n = performance.now();
     for (; performance.now() - n < 20 && l.relax(); )
       ;
   }
 }
-function Me() {
-  !u && l.isEmpty() && ke(), ze(), l.render(), Ve(), Ie();
-}
 function ke() {
+  !u && l.isEmpty() && ze(), Ve(), l.render(), Ie(), Ce();
+}
+function ze() {
   const n = innerWidth / 100, t = (e, s) => V(e, s, E(), x.toScreenPosition);
   t({ x: -7 * n, y: -4 * n }, { x: -7 * n, y: 4 * n }), t({ x: -3 * n, y: -4 * n }, { x: -3 * n, y: 4 * n }), t({ x: -3 * n, y: 4 * n }, { x: 2 * n, y: -4 * n }), t({ x: 2 * n, y: -4 * n }, { x: 2 * n, y: 4 * n }), t({ x: 6 * n, y: -4 * n }, { x: 6 * n, y: 4 * n }), t({ x: 6 * n, y: 1 * n }, { x: 10 * n, y: 4 * n }), t({ x: 8 * n, y: 2.4 * n }, { x: 10 * n, y: -4 * n });
 }
-function ze() {
+function Ve() {
   switch (u == null ? void 0 : u.type) {
     case "line":
       o.pos && V(u.start, o.pos, E(), x.toScreenPosition);
@@ -3311,7 +3311,7 @@ function ze() {
       break;
   }
 }
-function Ve() {
+function Ie() {
   if (!o.pos)
     return;
   const n = x.toScreenPosition(o.pos);
@@ -3325,7 +3325,7 @@ function Ve() {
     E("bold")
   );
 }
-function Ie() {
+function Ce() {
   if (!c.debug)
     return;
   const n = x.toScreenPosition({ x: 0, y: 0 });
@@ -3350,7 +3350,7 @@ function qt() {
   c.autoSolve = !c.autoSolve, y(`auto-solve ${c.autoSolve ? "on" : "off"}`);
 }
 function Ut() {
-  o.pos && l.delete(o.pos) && (y("delete"), ne(), l.isEmpty() && X(() => x.reset()));
+  o.pos && l.delete(o.pos) && (y("delete"), se(), l.isEmpty() && X(() => x.reset()));
 }
 function jt() {
   o.pos && l.fixedDistance(o.pos) && y("fixed distance");
@@ -3364,7 +3364,7 @@ function Kt() {
 function Qt() {
   o.pos && l.horizontalOrVertical(o.pos) && y("HorV");
 }
-function Ce() {
+function Jt() {
   o.pos && l.fullSize(o.pos) && y("full size");
 }
 function Te() {
@@ -3373,12 +3373,12 @@ function Te() {
     x.centerAt(n);
   }));
 }
-function Jt(n) {
+function Nt(n) {
   const t = S(n);
   !t.isEmpty() && o.pos && (y("instantiate #" + n), l.addInstance(t, o.pos, 0.5 * t.size / x.scale, 0));
 }
-function Nt() {
-  o.pos && l.dismember(o.pos) && (y("dismember"), ne());
+function Zt() {
+  o.pos && l.dismember(o.pos) && (y("dismember"), se());
 }
 function ot(n) {
   return !!o.pos && l.rotateInstanceAt(o.pos, n);
@@ -3389,17 +3389,17 @@ function ct(n) {
 function dt(n) {
   n ? l.toggleSelected(n) : o.pos && l.toggleSelections(o.pos);
 }
-function Zt(n, t) {
+function _t(n, t) {
   l.moveSelectionBy(n, t);
 }
-function _t() {
+function te() {
   l.clearSelection();
 }
-function te() {
+function ee() {
   if (!o.pos)
     return;
   const n = l.handleAt(o.pos);
-  n && (l.attachers.includes(n) ? (Rt(l, n), y("remove attacher")) : (Ae(l, n), y("add attacher")));
+  n && (l.attachers.includes(n) ? (Rt(l, n), y("remove attacher")) : (Pe(l, n), y("add attacher")));
 }
 function De() {
   l.equalDistance() && y("equal length");
@@ -3407,12 +3407,12 @@ function De() {
 function Et(n) {
   X(() => x.scale = n), y("scale=" + x.scale.toFixed(1));
 }
-function ee(n, t) {
+function ne(n, t) {
   X(() => {
     x.center.x -= n, x.center.y -= t;
   });
 }
-function ne() {
+function se() {
   for (; Le(); )
     ;
 }
@@ -3460,13 +3460,13 @@ function gt(n, t) {
   });
 }
 function Be() {
-  window.onpointerdown = null, window.onpointermove = null, window.onpointerup = null, window.removeEventListener("touchstart", se), R = [];
+  window.onpointerdown = null, window.onpointermove = null, window.onpointerup = null, window.removeEventListener("touchstart", ie), R = [];
 }
 window.onpointerdown = (n) => gt(n, "began");
 window.onpointermove = (n) => gt(n, "moved");
 window.onpointerup = (n) => gt(n, "ended");
-const se = (n) => n.preventDefault();
-window.addEventListener("touchstart", se, { passive: !1 });
+const ie = (n) => n.preventDefault();
+window.addEventListener("touchstart", ie, { passive: !1 });
 window.wrapperEvents = (n) => {
   window.wrapperEvents = At, Be(), At(n);
 };
@@ -3487,36 +3487,36 @@ class m {
     return this.fingerId != null;
   }
 }
-const ie = new m("SOLVE"), ae = [
+const ae = new m("SOLVE"), re = [
   new m("1"),
   new m("2"),
   new m("3"),
   new m("LINE"),
   new m("MOVE"),
   new m("HORV"),
-  new m("weight"),
+  new m("SIZE"),
   new m("DISM"),
   new m("DEL"),
-  ie
-], re = [
+  ae
+], oe = [
   new m("4"),
   new m("5"),
   new m("6"),
   new m("ARC"),
   new m("EQ"),
   new m("FIX"),
-  new m(""),
+  new m("weight"),
   new m("ATT"),
   new m("CLEAR"),
   new m("AUTO")
-], oe = [new m("reload")], pt = [...ae, ...re, ...oe];
+], ce = [new m("reload")], pt = [...re, ...oe, ...ce];
 function We() {
 }
 function $e() {
-  Oe(), ie.isDown && Xt();
+  Oe(), ae.isDown && Xt();
 }
 function Fe() {
-  rt(0, ae), rt(c.tablet.buttonWidth, re), rt(innerWidth - c.tablet.buttonWidth, oe);
+  rt(0, re), rt(c.tablet.buttonWidth, oe), rt(innerWidth - c.tablet.buttonWidth, ce);
   for (const n of pt)
     n.render();
 }
@@ -3545,19 +3545,19 @@ function Ye(n, t) {
   const s = { x: o.pos.x, y: o.pos.y };
   if (e && S().selection.size > 0) {
     const i = _(s, e);
-    Zt(i.x, i.y);
+    _t(i.x, i.y);
   }
   if (w) {
     const i = s.x - w.offset.x, r = s.y - w.offset.y;
     w.thing.moveBy(i - w.thing.x, r - w.thing.y);
   }
-  !G && t > 3 && (G = !0), G && t < 1 && ce();
+  !G && t > 3 && (G = !0), G && t < 1 && de();
 }
-function ce() {
-  G = !1, (w == null ? void 0 : w.thing) instanceof v && S().mergeAndAddImplicitConstraints(w.thing), w = null, _t();
+function de() {
+  G = !1, (w == null ? void 0 : w.thing) instanceof v && S().mergeAndAddImplicitConstraints(w.thing), w = null, te();
 }
 function Xe(n) {
-  o.clearPos(), ce(), $t(), Ot();
+  o.clearPos(), de(), $t(), Ot();
 }
 const D = /* @__PURE__ */ new Map();
 function qe(n, t) {
@@ -3577,7 +3577,7 @@ function Ue(n) {
     case "2":
     case "3":
     case "4":
-      o.pos ? (Jt(n.label), Pt()) : Bt(n.label);
+      o.pos ? (Nt(n.label), Pt()) : Bt(n.label);
       break;
     case "line":
       Wt();
@@ -3602,14 +3602,17 @@ function Ue(n) {
     case "fix":
       Gt() || jt();
       break;
+    case "size":
+      Jt();
+      break;
     case "weight":
       Kt();
       break;
     case "dism":
-      Nt();
+      Zt();
       break;
     case "att":
-      te();
+      ee();
       break;
     case "del":
       Ut();
@@ -3639,18 +3642,18 @@ function je(n, t) {
     return;
   D.set(t, n);
   const s = x.fromScreenPosition(n), i = x.fromScreenPosition(e);
-  if (o.pos || ee(s.x - i.x, s.y - i.y), D.size !== 2)
+  if (o.pos || ne(s.x - i.x, s.y - i.y), D.size !== 2)
     return;
   let r = null;
-  for (const [ue, xe] of D.entries())
-    if (ue !== t) {
-      r = xe;
+  for (const [xe, me] of D.entries())
+    if (xe !== t) {
+      r = me;
       break;
     }
   if (!r)
     throw new Error("bruh?!");
-  const a = x.fromScreenPosition(r), d = p(a, i), I = p(a, s) / d, le = Math.atan2(i.y - a.y, i.x - a.x), he = Math.atan2(s.y - a.y, s.x - a.x);
-  !ct(I) && !o.pos && (x.scale *= I), ot(he - le);
+  const a = x.fromScreenPosition(r), d = p(a, i), I = p(a, s) / d, he = Math.atan2(i.y - a.y, i.x - a.x), ue = Math.atan2(s.y - a.y, s.x - a.x);
+  !ct(I) && !o.pos && (x.scale *= I), ot(ue - he);
 }
 function Ge(n, t) {
   for (const e of pt)
@@ -3675,7 +3678,7 @@ function Ne() {
 function Ze(n) {
   if (A[n.key] = !0, "Digit0" <= n.code && n.code <= "Digit9") {
     const t = n.code.slice(5);
-    A.Shift ? Jt(t) : Bt(t);
+    A.Shift ? Nt(t) : Bt(t);
     return;
   }
   switch (n.key) {
@@ -3722,16 +3725,16 @@ function Ze(n) {
         ot(-5 * Math.PI / 180);
         break;
       case "s":
-        Ce();
+        Jt();
         break;
       case "A":
-        te();
+        ee();
         break;
       case "c":
         Te();
         break;
       case "D":
-        Nt();
+        Zt();
         break;
     }
 }
@@ -3762,7 +3765,7 @@ function tn(n) {
     f = { thing: t, offset: { x: 0, y: 0 } };
     return;
   }
-  _t();
+  te();
   const e = ft();
   e instanceof b ? f = { thing: e, offset: _(o.pos, e) } : e && dt(e);
 }
@@ -3773,12 +3776,12 @@ function en(n) {
   o.moveToScreenPos(n);
   const e = { x: o.pos.x, y: o.pos.y };
   if (H && t && !S().isEmpty() && !Y && !f && S().selection.size === 0) {
-    ee(e.x - t.x, e.y - t.y);
+    ne(e.x - t.x, e.y - t.y);
     return;
   }
   if (o.snapPos(f == null ? void 0 : f.thing), H && t && S().selection.size > 0) {
     const s = _(e, t);
-    Zt(s.x, s.y);
+    _t(s.x, s.y);
   }
   if (f) {
     const s = e.x - f.offset.x, i = e.y - f.offset.y;
@@ -3794,10 +3797,10 @@ const sn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   onFrame: Je,
   render: Ne
 }, Symbol.toStringTag, { value: "Module" }));
-ge(document.getElementById("canvas"));
+pe(document.getElementById("canvas"));
 const lt = new URLSearchParams(window.location.search).get("tablet") ? Ke : sn;
 lt.init();
-function de() {
-  lt.onFrame(), Pe(), pe(), lt.render(), Me(), requestAnimationFrame(de);
+function le() {
+  lt.onFrame(), Me(), we(), lt.render(), ke(), requestAnimationFrame(le);
 }
-de();
+le();
