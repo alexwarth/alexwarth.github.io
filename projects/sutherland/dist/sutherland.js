@@ -88,7 +88,7 @@ let B = "", te = 0;
 function y(n) {
   Nt && (B = n, te = Date.now());
 }
-function ze() {
+function Ve() {
   if (h.clearRect(0, 0, g.width, g.height), h.lineWidth = d.lineWidth, h.lineCap = "round", B.length > 0) {
     h.font = "40px Monaco";
     const t = h.measureText(B).width, e = Date.now() - te;
@@ -107,7 +107,7 @@ function ee(n, t = S(), e = nt) {
   const s = e(n);
   h.fillStyle = t, h.beginPath(), h.arc(s.x, s.y, h.lineWidth * 2, 0, Ae), h.fill();
 }
-function z(n, t, e = S(), s = nt) {
+function V(n, t, e = S(), s = nt) {
   const i = h.lineWidth;
   n.x === t.x && n.y === t.y && (h.lineWidth *= 2), h.strokeStyle = e, h.beginPath();
   const a = s(n), r = s(t);
@@ -116,8 +116,8 @@ function z(n, t, e = S(), s = nt) {
 function ne(n, t, e, s = S(), i = nt) {
   const a = i(t), r = i(e), c = i(n);
   h.beginPath(), h.strokeStyle = s;
-  const f = Math.atan2(a.y - c.y, a.x - c.x), V = Math.atan2(r.y - c.y, r.x - c.x);
-  h.arc(c.x, c.y, b(c, a), f, V), h.stroke();
+  const f = Math.atan2(a.y - c.y, a.x - c.x), I = Math.atan2(r.y - c.y, r.x - c.x);
+  h.arc(c.x, c.y, b(c, a), f, I), h.stroke();
 }
 function se(n, t, e = S(), s = nt) {
   h.fillStyle = e;
@@ -130,16 +130,16 @@ function S(n = "normal") {
   let t, e;
   return n === "normal" ? (t = 0.35, e = 0.3) : n === "light" ? (t = 0.1, e = 0.05) : (t = 0.7, e = 0.1), t *= d.baseAlphaMultiplier, `rgba(255,255,255,${d.flicker ? Math.random() * e + t : 0.75 * e + t})`;
 }
-let I = 1;
+let z = 1;
 const L = { x: 0, y: 0 }, u = {
   reset() {
-    I = 1, this.centerAt({ x: 0, y: 0 });
+    z = 1, this.centerAt({ x: 0, y: 0 });
   },
   get scale() {
-    return I;
+    return z;
   },
   set scale(n) {
-    I = n;
+    z = n;
   },
   centerAt({ x: n, y: t }) {
     L.x = n, L.y = t;
@@ -152,14 +152,14 @@ const L = { x: 0, y: 0 }, u = {
   },
   toScreenPosition({ x: n, y: t }) {
     return {
-      x: (n - L.x) * I + innerWidth / 2,
-      y: -(t - L.y) * I + innerHeight / 2
+      x: (n - L.x) * z + innerWidth / 2,
+      y: -(t - L.y) * z + innerHeight / 2
     };
   },
   fromScreenPosition({ x: n, y: t }) {
     return {
-      x: (n - innerWidth / 2) / I + L.x,
-      y: L.y - (t - innerHeight / 2) / I
+      x: (n - innerWidth / 2) / z + L.x,
+      y: L.y - (t - innerHeight / 2) / z
     };
   }
 };
@@ -492,7 +492,7 @@ const tt = class tt {
 };
 tt.nextId = 0;
 let E = tt;
-class T {
+class C {
   constructor(t, e, s) {
     this.isGuide = s, this.a = new E(t), this.b = new E(e);
   }
@@ -515,7 +515,7 @@ class T {
     if (this.isGuide && !d.showGuideLines)
       return;
     const e = this.isGuide ? d.guideLineColor : S();
-    z(this.a, this.b, e, t);
+    V(this.a, this.b, e, t);
   }
   forEachHandle(t) {
     t(this.a), t(this.b);
@@ -627,7 +627,7 @@ const et = class et {
   render(t, e = 0) {
     this.master.render((s) => t(this.transform(s)), e + 1), e === 1 && this.attachers.forEach((s, i) => {
       const a = t(s);
-      z(
+      V(
         t(this.transform(this.master.attachers[i])),
         a,
         d.instanceSideAttacherColor
@@ -705,7 +705,7 @@ class ie {
     return !0;
   }
   addLine(t, e, s = !1, i = !0) {
-    const a = new T(t, e, s);
+    const a = new C(t, e, s);
     !s && i && (this.mergeAndAddImplicitConstraints(a.a), this.mergeAndAddImplicitConstraints(a.b));
     for (const r of this.things)
       r.forEachHandle((c) => {
@@ -729,14 +729,14 @@ class ie {
         i !== t && i.contains(t) && (this.replaceHandle(i, t), e.add(s));
       });
     for (const s of this.things)
-      e.has(s) || !s.contains(t) || (s instanceof T ? (this.constraints.add(new $(t, s.a, s.b)), d.showImplicitConstraints && y("(point on line)")) : s instanceof U && (this.constraints.add(new F(t, s.a, s.b, s.c)), d.showImplicitConstraints && y("(point on arc)")));
+      e.has(s) || !s.contains(t) || (s instanceof C ? (this.constraints.add(new $(t, s.a, s.b)), d.showImplicitConstraints && y("(point on line)")) : s instanceof U && (this.constraints.add(new F(t, s.a, s.b, s.c)), d.showImplicitConstraints && y("(point on arc)")));
   }
   replaceHandle(t, e) {
     this.things.forEach((s) => s.replaceHandle(t, e)), this.attachers = this.attachers.map((s) => s === t ? e : s), this.constraints.replaceHandle(t, e);
   }
   delete(t) {
-    const e = this.thingsForOperation(t);
-    return e.size === 0 ? !1 : (this.things = this.things.filter((s) => !e.has(s)), !0);
+    const e = this.thingAt(t);
+    return e ? (this.things = this.things.filter((s) => s !== e), !0) : !1;
   }
   fixedPoint(t) {
     const e = this.handleAt(t, null);
@@ -747,41 +747,25 @@ class ie {
     return e ? (this.constraints.add(new gt(e)), !0) : !1;
   }
   fixedDistance(t) {
-    const e = this.thingsForOperation(t);
-    if (e.size === 0)
-      return !1;
-    let s = !1;
-    for (const i of e)
-      i instanceof T && (this.constraints.add(new _(i.a, i.b)), s = !0);
-    return s;
+    const e = this.thingAt(t);
+    return e instanceof C ? (this.constraints.add(new _(e.a, e.b)), !0) : !1;
   }
   horizontalOrVertical(t) {
-    const e = this.thingsForOperation(t);
-    if (e.size === 0)
-      return !1;
-    let s = !1;
-    for (const i of e)
-      i instanceof T && (this.constraints.add(new pt(i.a, i.b)), s = !0);
-    return s;
+    const e = this.thingAt(t);
+    return e instanceof C ? (this.constraints.add(new pt(e.a, e.b)), !0) : !1;
   }
   fullSize(t) {
-    let e = !1;
-    const s = this.thingsForOperation(t);
-    for (const i of s)
-      i instanceof v && (this.constraints.add(new Q(i)), e = !0);
-    return e;
+    const e = this.thingAt(t);
+    return e instanceof v ? (this.constraints.add(new Q(e)), !0) : !1;
   }
   dismember(t) {
-    let e = !1;
-    const s = this.thingsForOperation(t);
-    for (const i of s)
-      i instanceof v && (this.inline(i), e = !0);
-    return e;
+    const e = this.thingAt(t);
+    return e instanceof v ? (this.inline(e), !0) : !1;
   }
   inline(t) {
     const { things: e, constraints: s } = t.master, i = /* @__PURE__ */ new Map(), a = /* @__PURE__ */ new Map();
     for (const r of e)
-      if (r instanceof T) {
+      if (r instanceof C) {
         const c = this.addLine(
           t.transform(r.a),
           t.transform(r.b),
@@ -818,7 +802,7 @@ class ie {
     a.forEachVar((f) => r.add(f));
     const c = [];
     for (const f of this.things)
-      f === e || !f.contains(t) || (f instanceof T ? (i.add(new $(a, f.a, f.b)), c.push("L")) : f instanceof U && (i.add(new F(a, f.a, f.b, f.c)), c.push("A")));
+      f === e || !f.contains(t) || (f instanceof C ? (i.add(new $(a, f.a, f.b)), c.push("L")) : f instanceof U && (i.add(new F(a, f.a, f.b, f.c)), c.push("A")));
     if (i.isEmpty())
       return null;
     for (; i.relax(r); )
@@ -867,11 +851,6 @@ class ie {
     for (const { x: e, y: s } of this.getPositions())
       t = Math.max(t, Math.pow(e, 2) + Math.pow(s, 2));
     return Math.sqrt(t) * 2;
-  }
-  // TODO: simplify
-  thingsForOperation(t) {
-    const e = this.thingAt(t);
-    return e ? /* @__PURE__ */ new Set([e]) : /* @__PURE__ */ new Set();
   }
   getHandles(t) {
     const e = /* @__PURE__ */ new Set();
@@ -932,7 +911,7 @@ class ie {
     );
   }
 }
-const Ve = {
+const Ie = {
   __map: !0,
   values: [
     [
@@ -3147,11 +3126,11 @@ const Ve = {
       ]
     ]
   ]
-}, Ie = 1, Le = {
-  data: Ve,
-  version: Ie
+}, ze = 1, Le = {
+  data: Ie,
+  version: ze
 };
-function Te(n, t, e = d.fontScale) {
+function Ce(n, t, e = d.fontScale) {
   for (const s of t)
     switch (s.command) {
       case "line": {
@@ -3174,10 +3153,10 @@ function Te(n, t, e = d.fontScale) {
         break;
     }
 }
-const Ce = new Map(Le.data.values), at = /* @__PURE__ */ new Map();
-for (const [n, t] of Ce) {
+const Te = new Map(Le.data.values), at = /* @__PURE__ */ new Map();
+for (const [n, t] of Te) {
   const e = new ie();
-  Te(e, t, d.fontScale);
+  Ce(e, t, d.fontScale);
   const s = e.addLine(
     { x: -d.kerning * d.fontScale, y: 0 },
     { x: (4 + d.kerning) * d.fontScale, y: 0 },
@@ -3189,8 +3168,8 @@ function Yt(n, t, e) {
   const s = (r) => t * (r === r.toUpperCase() ? 1 : 0.75), i = (r) => s(r) * d.fontScale * (4 + d.kerning * 2);
   let a = u.center.x - 0.5 * [...n].map(i).reduce((r, c) => r + c, 0);
   for (let r = 0; r < n.length; r++) {
-    const c = n[r], f = s(c), V = at.get(c.toUpperCase());
-    V && e(V, a, f), a += i(c);
+    const c = n[r], f = s(c), I = at.get(c.toUpperCase());
+    I && e(I, a, f), a += i(c);
   }
 }
 function ot({ x: n, y: t }, e) {
@@ -3283,13 +3262,13 @@ function oe() {
   !x && l.isEmpty() && He(), Be(), l.render(), We(), $e();
 }
 function He() {
-  const n = innerWidth / 100, t = (e, s) => z(e, s, S(), u.toScreenPosition);
+  const n = innerWidth / 100, t = (e, s) => V(e, s, S(), u.toScreenPosition);
   t({ x: -7 * n, y: -4 * n }, { x: -7 * n, y: 4 * n }), t({ x: -3 * n, y: -4 * n }, { x: -3 * n, y: 4 * n }), t({ x: -3 * n, y: 4 * n }, { x: 2 * n, y: -4 * n }), t({ x: 2 * n, y: -4 * n }, { x: 2 * n, y: 4 * n }), t({ x: 6 * n, y: -4 * n }, { x: 6 * n, y: 4 * n }), t({ x: 6 * n, y: 1 * n }, { x: 10 * n, y: 4 * n }), t({ x: 8 * n, y: 2.4 * n }, { x: 10 * n, y: -4 * n });
 }
 function Be() {
   switch (x == null ? void 0 : x.type) {
     case "line":
-      o.pos && z(x.start, o.pos, S(), u.toScreenPosition);
+      o.pos && V(x.start, o.pos, S(), u.toScreenPosition);
       break;
     case "arc":
       x.positions.length > 1 && o.pos && ne(
@@ -3306,11 +3285,11 @@ function We() {
   if (!o.pos)
     return;
   const n = u.toScreenPosition(o.pos);
-  z(
+  V(
     { x: n.x - d.crosshairsSize, y: n.y },
     { x: n.x + d.crosshairsSize, y: n.y },
     S("bold")
-  ), z(
+  ), V(
     { x: n.x, y: n.y - d.crosshairsSize },
     { x: n.x, y: n.y + d.crosshairsSize },
     S("bold")
@@ -3320,7 +3299,7 @@ function $e() {
   if (!d.debug)
     return;
   const n = u.toScreenPosition({ x: 0, y: 0 });
-  z({ x: 0, y: n.y }, { x: innerWidth, y: n.y }, d.axisColor), z({ x: n.x, y: 0 }, { x: n.x, y: innerHeight }, d.axisColor);
+  V({ x: 0, y: n.y }, { x: innerWidth, y: n.y }, d.axisColor), V({ x: n.x, y: 0 }, { x: n.x, y: innerHeight }, d.axisColor);
   const t = o.pos;
   t && se(u.toScreenPosition(t), `(${t.x.toFixed()}, ${t.y.toFixed()})`);
 }
@@ -3332,7 +3311,7 @@ function q() {
 }
 function ht() {
   const n = q();
-  return n instanceof T ? n : null;
+  return n instanceof C ? n : null;
 }
 function ce() {
   const n = q();
@@ -3347,19 +3326,19 @@ function Mt() {
 function kt() {
   o.pos && l.delete(o.pos) && (y("delete"), le(), l.isEmpty() && X(() => u.reset()));
 }
-function zt() {
+function Vt() {
   o.pos && l.fixedDistance(o.pos) && y("fixed distance");
 }
-function Vt() {
+function It() {
   return o.pos && l.fixedPoint(o.pos) ? (y("fixed point"), !0) : !1;
 }
-function It() {
+function zt() {
   o.pos && l.weight(o.pos) && y("weight");
 }
 function Lt() {
   o.pos && l.horizontalOrVertical(o.pos) && y("HorV");
 }
-function Tt() {
+function Ct() {
   o.pos && l.fullSize(o.pos) && y("full size");
 }
 function de() {
@@ -3368,7 +3347,7 @@ function de() {
     u.centerAt(n);
   }));
 }
-function Ct(n) {
+function Tt(n) {
   const t = A(n);
   !t.isEmpty() && o.pos && (y("instantiate #" + n), l.addInstance(t, o.pos, 0.5 * t.size / u.scale, 0));
 }
@@ -3439,13 +3418,13 @@ const Oe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   endArc: St,
   endEqualLength: rt,
   endLines: vt,
-  fixedDistance: zt,
-  fixedPoint: Vt,
-  fullSize: Tt,
+  fixedDistance: Vt,
+  fixedPoint: It,
+  fullSize: Ct,
   handle: At,
   horizontalOrVertical: Lt,
   instance: ce,
-  instantiate: Ct,
+  instantiate: Tt,
   line: ht,
   moreArc: Et,
   moreEqualLength: Bt,
@@ -3463,7 +3442,7 @@ const Oe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   thing: q,
   toggleAttacher: Ht,
   toggleAutoSolve: Mt,
-  weight: It
+  weight: zt
 }, Symbol.toStringTag, { value: "Module" }));
 var Gt;
 const qt = (Gt = window.webkit) == null ? void 0 : Gt.messageHandlers, Re = window.webkit != null;
@@ -3587,7 +3566,7 @@ function _e(n, t) {
 let jt = null;
 function Qe() {
   const n = o.snapPos(w == null ? void 0 : w.thing);
-  n !== jt && (jt = n, Ne());
+  n && n !== jt && Ne(), jt = n;
 }
 function Je() {
   he("prepareHaptics");
@@ -3604,19 +3583,19 @@ function Ze() {
 function tn(n) {
   o.clearPos(), ge(), vt(), St();
 }
-const C = /* @__PURE__ */ new Map();
+const T = /* @__PURE__ */ new Map();
 function en(n, t) {
   for (const e of Ot)
     if (e.contains(n)) {
       e.fingerId = t, nn(e);
       return;
     }
-  C.set(t, n);
+  T.set(t, n);
 }
 function nn(n) {
   const t = n.label.toLowerCase();
   if ("1" <= t && t <= "9") {
-    o.pos ? (Ct(n.label), Z()) : wt(n.label);
+    o.pos ? (Tt(n.label), Z()) : wt(n.label);
     return;
   }
   switch (t) {
@@ -3636,13 +3615,13 @@ function nn(n) {
       Lt();
       break;
     case "fix":
-      Vt() || zt();
+      It() || Vt();
       break;
     case "size":
-      Tt();
+      Ct();
       break;
     case "weight":
-      It();
+      zt();
       break;
     case "dism":
       Dt();
@@ -3674,30 +3653,30 @@ function Z() {
   t && (w = { thing: t, offset: Kt(o.pos, t) });
 }
 function an(n, t) {
-  if (A().isEmpty() || C.size > 2)
+  if (A().isEmpty() || T.size > 2)
     return;
-  const e = C.get(t);
+  const e = T.get(t);
   if (!e)
     return;
-  C.set(t, n);
+  T.set(t, n);
   const s = u.fromScreenPosition(n), i = u.fromScreenPosition(e);
-  if (o.pos || Wt(s.x - i.x, s.y - i.y), C.size !== 2)
+  if (o.pos || Wt(s.x - i.x, s.y - i.y), T.size !== 2)
     return;
   let a = null;
-  for (const [Ee, Se] of C.entries())
+  for (const [Ee, Se] of T.entries())
     if (Ee !== t) {
       a = Se;
       break;
     }
   if (!a)
     throw new Error("bruh?!");
-  const r = u.fromScreenPosition(a), c = b(r, i), V = b(r, s) / c, be = Math.atan2(i.y - r.y, i.x - r.x), ve = Math.atan2(s.y - r.y, s.x - r.x);
-  ce() && !w && Z(), !N(V) && !o.pos && (u.scale *= V), J(ve - be);
+  const r = u.fromScreenPosition(a), c = b(r, i), I = b(r, s) / c, be = Math.atan2(i.y - r.y, i.x - r.x), ve = Math.atan2(s.y - r.y, s.x - r.x);
+  ce() && !w && Z(), !N(I) && !o.pos && (u.scale *= I), J(ve - be);
 }
 function rn(n, t) {
   for (const e of Ot)
     e.fingerId === t && (sn(e), e.fingerId = null);
-  C.delete(t);
+  T.delete(t);
 }
 const on = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
@@ -3717,7 +3696,7 @@ function ln() {
 function hn(n) {
   if (P[n.key] = !0, "Digit0" <= n.code && n.code <= "Digit9") {
     const t = n.code.slice(5);
-    P.Shift ? Ct(t) : wt(t);
+    P.Shift ? Tt(t) : wt(t);
     return;
   }
   switch (n.key) {
@@ -3737,13 +3716,13 @@ function hn(n) {
         kt();
         break;
       case "l":
-        zt();
-        break;
-      case ".":
         Vt();
         break;
-      case "W":
+      case ".":
         It();
+        break;
+      case "W":
+        zt();
         break;
       case "h":
         Lt();
@@ -3761,7 +3740,7 @@ function hn(n) {
         J(-5 * Math.PI / 180);
         break;
       case "s":
-        Tt();
+        Ct();
         break;
       case "A":
         Ht();
@@ -3835,7 +3814,7 @@ ke(document.getElementById("canvas"));
 const xt = new URLSearchParams(window.location.search).get("tablet") ? on : fn;
 xt.init();
 function we() {
-  xt.onFrame(), re(), ze(), xt.render(), oe(), requestAnimationFrame(we);
+  xt.onFrame(), re(), Ve(), xt.render(), oe(), requestAnimationFrame(we);
 }
 we();
 window.app = Oe;
