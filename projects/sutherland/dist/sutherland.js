@@ -206,8 +206,8 @@ class xt extends P {
   constructor(t, { x: e, y: s }) {
     super([], [t]), this.pos = { x: e, y: s };
   }
-  map(t, e) {
-    return new xt(e.get(this.p), this.pos);
+  map(t, e, s) {
+    return new xt(e.get(this.p), s(this.pos));
   }
   get p() {
     return this.handles[0];
@@ -817,7 +817,7 @@ class ie {
       } else
         throw new Error("unsupported thing type: " + a.constructor.name);
     s.forEach((a) => {
-      this.constraints.add(a.map(r, i));
+      this.constraints.add(a.map(r, i, t.transform));
     }), this.things = this.things.filter((a) => a !== t);
   }
   snap(t, e) {
