@@ -3936,6 +3936,9 @@ const xe = new class extends ye {
     ], this.col2 = [this.backButton], this.buttons.push(...this.col1, ...this.col2);
   }
   render() {
+    this._render(), this._render();
+  }
+  _render() {
     super.render(), T(
       a().lefty ? "on" : "off",
       this.leftyButton.leftX + 2 * a().tabletButtonWidth,
