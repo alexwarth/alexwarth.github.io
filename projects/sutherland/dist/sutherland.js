@@ -580,7 +580,7 @@ class K {
     this.forEachHandle((s) => s.moveBy(t, e));
   }
   render(t, e, s = 0) {
-    se(this.c, this.a, this.b, e ?? P(), t), s === 1 && (F(this.a, a().controlPointColor, t), F(this.b, a().controlPointColor, t), F(this.c, a().controlPointColor, t));
+    se(this.c, this.a, this.b, e ?? P(), t), s === 1 && a().showControlPoints && (F(this.a, a().controlPointColor, t), F(this.b, a().controlPointColor, t), F(this.c, a().controlPointColor, t));
   }
   forEachHandle(t) {
     t(this.a), t(this.b), t(this.c);
