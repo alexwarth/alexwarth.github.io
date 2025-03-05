@@ -4374,7 +4374,7 @@ const He = new class extends Oe {
         Jt();
         break;
       case this.solveButton:
-        Date.now() - n.lastDownTime < 150 && Nt();
+        Date.now() - n.lastDownTime < 200 && Nt();
         break;
       case this.timeButton:
         ht().updateRenderingInfo(), lt("top");
