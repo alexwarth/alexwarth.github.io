@@ -207,7 +207,7 @@ class Lt {
     const t = rt * 3;
     this._render(
       20 + le,
-      innerHeight - 20 - t * this.breadth,
+      innerHeight - 20 - t,
       (innerWidth - 40 - le) / (gt.depth - 1),
       t
     ), B.renderCircle("yellow");
@@ -240,7 +240,7 @@ class Lt {
     this.x = t, this.y = e;
     let a = e;
     for (const r of this.children)
-      r._render(t + i, a, i, s), I({ x: t, y: e }, { x: t + i, y: a }, "cornflowerblue"), a += r.breadth * s;
+      r._render(t + i, a, i, s), I({ x: t, y: e }, { x: t + i, y: a }, "cornflowerblue"), a -= r.breadth * s;
     this.renderCircle("cornflowerblue");
   }
   renderCircle(t) {
