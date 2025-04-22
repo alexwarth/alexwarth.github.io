@@ -4,6 +4,8 @@ Scholarly Stuff
 Refereed Publications
 ---------------------
 
+[_Inkling: Sketching Dynamic Systems_](https://www.inkandswitch.com/project/inkling/). Marcel Goethals, Alessandro Warth, and Ivan Reese. [Live Programming Workshop (LIVE), 2024](https://2024.splashcon.org/home/live-2024).
+
 [_Seymour: Live Programming for the Classroom_](https://harc.github.io/seymour-live2017/). Saketh Kasibatla and Alessandro Warth. [Live Programming Workshop (LIVE), 2017](https://2017.splashcon.org/track/live-2017).
 
 [_Incremental Packrat Parsing_](https://ohmlang.github.io/pubs/sle2017/incremental-packrat-parsing.pdf). Patrick Dubroy and Alessandro Warth. [ACM
