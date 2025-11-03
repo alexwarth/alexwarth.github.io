@@ -4,6 +4,8 @@ Scholarly Stuff
 Refereed Publications
 ---------------------
 
+[_Ambsheets: A spreadsheet for exploring scenarios_](https://www.inkandswitch.com/project/inkling/). Alessandro Warth, Geoffrey Litt, and Avi Bryant. [Live Programming Workshop (LIVE), 2025](https://https://www.inkandswitch.com/project/ambsheets/live25).
+
 [_Inkling: Sketching Dynamic Systems_](https://www.inkandswitch.com/project/inkling/). Marcel Goethals, Alessandro Warth, and Ivan Reese. [Live Programming Workshop (LIVE), 2024](https://2024.splashcon.org/home/live-2024).
 
 [_Seymour: Live Programming for the Classroom_](https://harc.github.io/seymour-live2017/). Saketh Kasibatla and Alessandro Warth. [Live Programming Workshop (LIVE), 2017](https://2017.splashcon.org/track/live-2017).
