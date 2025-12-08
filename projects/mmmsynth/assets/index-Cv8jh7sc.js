@@ -16,15 +16,15 @@
     fetch(s.href, r);
   }
 })();
-const C = "" + new URL("msynth-worklet-DhFL8hbd.js", import.meta.url).href;
+const C = "" + new URL("msynth-worklet-BdxmyLhY.js", import.meta.url).href;
 function N(e, t, i) {
   return new Uint8Array([144 | e & 15, t & 127, i & 127]);
 }
-function z(e, t, i) {
+function Y(e, t, i) {
   return new Uint8Array([128 | e & 15, t & 127, i & 127]);
 }
-const q = 48e3, J = 1 / q, Q = 2 * Math.PI, X = document.getElementById("ui"), u = document.createElement("canvas"), n = u.getContext("2d");
-X.appendChild(u);
+const q = 48e3, J = 1 / q, Q = 2 * Math.PI, z = document.getElementById("ui"), u = document.createElement("canvas"), n = u.getContext("2d");
+z.appendChild(u);
 const x = 2;
 let a = 0, l = 0;
 function E() {
@@ -32,11 +32,11 @@ function E() {
 }
 window.addEventListener("resize", E);
 E();
-const Y = 16;
+const X = 16;
 let h = "tap here", f = "mpe", v = "pwm";
 const W = 42, U = 5;
 let p = 0;
-class D {
+class B {
   constructor(t, i, o) {
     this.col = t, this.row = i, this.noteName = o;
   }
@@ -56,10 +56,10 @@ class D {
     n.beginPath(), n.lineWidth = 4, n.strokeStyle = "#eee", n.strokeRect(this.posX, this.posY, a, l), n.stroke(), n.beginPath(), n.fillStyle = this.noteName === "" ? "#ccc" : "#ddd", n.fillRect(this.posX, this.posY, a, l), this.noteName !== "" && (n.font = "14px sans-serif", n.fillStyle = "#bbb", n.fillText(this.noteName, this.posX + 4, this.posY + 16), n.fill());
   }
 }
-const y = [], B = ["C", "", "D", "", "E", "F", "", "G", "", "A", "", "B"];
+const y = [], D = ["C", "", "D", "", "E", "F", "", "G", "", "A", "", "B"];
 let F = 0;
 for (let e = 2; e <= 7; e++) {
-  for (let t = 0; t <= 12; t++) y.push(new D(t, e, B[(F + t) % 12]));
+  for (let t = 0; t <= 12; t++) y.push(new B(t, e, D[(F + t) % 12]));
   F += 7;
 }
 const m = /* @__PURE__ */ new Map();
@@ -253,7 +253,7 @@ class _ {
     P(this.node, { command: "process midi message", data: N(0, t, i) });
   }
   noteOff(t, i) {
-    P(this.node, { command: "process midi message", data: z(0, t, i) });
+    P(this.node, { command: "process midi message", data: Y(0, t, i) });
   }
 }
 const d = [];
@@ -271,7 +271,7 @@ function I(e) {
   v = e;
   for (const t of d) P(t.node, { command: "stop" }), t.node.disconnect();
   d.length = 0;
-  for (let t = 0; t < Y; t++) {
+  for (let t = 0; t < X; t++) {
     const i = new AudioWorkletNode(b, "msynth"), o = new Float32Array(new SharedArrayBuffer(128 * 4));
     d.push(new _(i, o)), i.channelInterpretation = "discrete", i.channelCount = 2, i.channelCountMode = "explicit", i.connect(b.destination), i.port.onmessage = (s) => console.log("worklet:", s.data), P(i, { command: "load patch", code: S[v], params: o.buffer });
   }
