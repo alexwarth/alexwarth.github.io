@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Hat -->
+  <rect x="10" y="4" width="12" height="3" fill="#E74C3C"/>
+  <rect x="8" y="7" width="16" height="2" fill="#E74C3C"/>
+  
+  <!-- Face -->
+  <rect x="10" y="9" width="12" height="8" fill="#F4D3A6"/>
+  
+  <!-- Hair -->
+  <rect x="8" y="9" width="2" height="4" fill="#8B4513"/>
+  <rect x="22" y="9" width="2" height="4" fill="#8B4513"/>
+  
+  <!-- Eyes -->
+  <rect x="12" y="11" width="2" height="2" fill="#000"/>
+  <rect x="18" y="11" width="2" height="2" fill="#000"/>
+  
+  <!-- Nose -->
+  <rect x="15" y="13" width="2" height="2" fill="#D4A574"/>
+  
+  <!-- Mustache -->
+  <rect x="11" y="15" width="4" height="2" fill="#8B4513"/>
+  <rect x="17" y="15" width="4" height="2" fill="#8B4513"/>
+  
+  <!-- Body -->
+  <rect x="11" y="17" width="10" height="6" fill="#3498DB"/>
+  
+  <!-- Arms (one up, one out for dynamic jumping) -->
+  <rect x="6" y="14" width="2" height="4" fill="#F4D3A6"/>
+  <rect x="8" y="16" width="3" height="2" fill="#F4D3A6"/>
+  <rect x="21" y="18" width="4" height="2" fill="#F4D3A6"/>
+  
+  <!-- Overalls straps -->
+  <rect x="13" y="17" width="2" height="3" fill="#2C3E50"/>
+  <rect x="17" y="17" width="2" height="3" fill="#2C3E50"/>
+  
+  <!-- Legs (one bent up, one extended down for mid-jump pose) -->
+  <rect x="11" y="23" width="4" height="2" fill="#3498DB"/>
+  <rect x="18" y="23" width="3" height="5" fill="#3498DB"/>
+  
+  <!-- Shoes -->
+  <rect x="10" y="25" width="5" height="2" fill="#8B4513"/>
+  <rect x="18" y="28" width="5" height="2" fill="#8B4513"/>
+</svg>
