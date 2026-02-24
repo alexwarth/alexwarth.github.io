@@ -11,7 +11,7 @@ osc2 = sync * 500 * ad(0.2, 0.5) >> pulse(0.5, osc1)
 out = osc2 * adsr(0.05, 0, 1, 0.2) >> dcBlock
     `,{octave:-1}),new ut("duran duran",`
 decay = 0.102 escale(0.1, 2)
-delayAmt = 0.75
+delayAmt = 0.65
 detuneAmt = paramD
 portamento = paramA
 freq = (paramB abs - 0.5) ifPos(noteFreq * 2, noteFreq) eglide(portamento)
@@ -20,7 +20,7 @@ f2 = freq * (1 / detuneAmt escale(1.001, 1.025))
 oscs = (f1 pulse + f2 pulse) / 2
 dry = oscs lpf12(24000 * paramC, 0) * adsr(0, 0, 1, decay)
 out = dry + delayAmt * dry delay(0.75 beats)
-    `,{mono:!0,mode:"piano",tempo:123,paramC:.95,paramD:.2,noteDuration:.25}),new ut("stranger things",`
+    `,{mono:!0,mode:"piano",tempo:123,paramC:.95,paramD:.2,noteDuration:.3}),new ut("stranger things",`
 release = paramA
 resonance = (paramB norm - 0.5) abs scale(0.15, 1)
 pwmRate = 0.218
