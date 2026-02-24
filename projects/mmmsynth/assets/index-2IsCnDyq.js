@@ -11,7 +11,7 @@ osc2 = sync * 500 * ad(0.2, 0.5) >> pulse(0.5, osc1)
 out = osc2 * adsr(0.05, 0, 1, 0.2) >> dcBlock
     `,{octave:-1}),new ut("duran duran",`
 decay = 0.102 escale(0.1, 2)
-delayAmt = 0.547
+delayAmt = 0.75
 detuneAmt = paramD
 portamento = paramA
 freq = (paramB abs - 0.5) ifPos(noteFreq * 2, noteFreq) eglide(portamento)
