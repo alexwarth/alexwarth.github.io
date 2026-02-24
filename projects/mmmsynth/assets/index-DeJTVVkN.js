@@ -17,9 +17,9 @@ portamento = paramA
 freq = (paramB abs - 0.5) ifPos(noteFreq * 2, noteFreq) eglide(portamento)
 f1 = freq / 2
 f2 = freq * (1 / detuneAmt escale(1.001, 1.025))
-oscs = 0.4 * f1 pulse + 0.6 * f2 pulse
+oscs = 0.3 * f1 pulse + 0.7 * f2 pulse
 dry = oscs lpf12(24000 * paramC, 1) * adsr(0, 0, 1, decay)
-out = (dry + delayAmt * dry delay(0.75 beats)) hpf(freq * .25)
+out = (dry + delayAmt * dry delay(0.75 beats)) // hpf(freq * .25)
     `,{mono:!0,mode:"piano",tempo:123,paramC:.95,paramD:.2,noteDuration:.3}),new ut("stranger things",`
 release = paramA
 resonance = (paramB norm - 0.5) abs scale(0.15, 1)
