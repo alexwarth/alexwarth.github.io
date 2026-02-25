@@ -1,0 +1,1 @@
+body{-webkit-user-drag:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:none;background-color:#0c1222;margin:0;width:100vw;height:100vh;z-index:1;overflow:hidden;position:relative}#ui{position:absolute;inset:0}.editor-container{z-index:100;background-color:#0c1222}.editor-container .cm-editor{position:absolute!important;inset:0}
