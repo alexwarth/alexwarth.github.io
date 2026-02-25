@@ -17,7 +17,7 @@ freq = (paramB abs - 0.5) ifPos(noteFreq * 2, noteFreq) eglide(portamento)
 f1 = freq / 2
 f2 = freq * detuneAmt escale(1.001, 1.025)
 oscs = 0.3 * f1 pulse + 0.7 * f2 pulse
-dry = oscs lpf12(24000 * paramC, 1) * ad(0, .5 beats)
+dry = oscs lpf12(24000 * paramC, 1) * ad(0, .75 beats)
 out = dry + delayAmt * dry delay(0.75 beats)
     `,{mono:!0,mode:"piano",tempo:123,paramC:.95,paramD:.2}),new ut("stranger things",`
 release = paramA
