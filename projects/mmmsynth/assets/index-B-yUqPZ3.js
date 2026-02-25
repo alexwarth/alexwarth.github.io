@@ -57,7 +57,7 @@ string1 = (burst + string1) delay(1 / noteFreq) lpf12(20000 * cutoff, 0) * feedb
 string2 = (burst + string2) delay(1 / (noteFreq * 2)) lpf12(20000 * cutoff, 0) * feedback
 out = burst + (string1 + string2) * adsr(0, 0, 1, 0.1)
     `,{paramA:1,paramB:.99,octave:-1,mode:"strum"}),new ut("strum bass",`
-out = noteFreq sine * ad(0.01, 5) * adsr(0, 0, 1, 0.1)
+out = noteFreq sine * ad(0.01, 5) * adsr(0.01, 0, 1, 0.1)
     `,{paramA:.2,paramB:1,octave:-2,mode:"strum"}),new ut("rick and morty",`
 sound1 = noise bpf(0.2 sine * 800 + 1200, 1)
 sound2 = noise bpf(-(0.25 sine) * 800 + 1200, 1)
