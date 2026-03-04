@@ -327,7 +327,7 @@ osc1 = (noteFreq / 4) pulse
 osc2 = 300 ad(a: 0.2, d: 0.5) >> pulse(w: 0.5, sync: osc1)
 out = osc2 adsr(a: 0.05, d: 0, s: 1, r: 0.2) >> dcBlock
   `),le.parse(`
--- name: "duran duran", mono: true, mode: "piano", tempo: 113, paramC: 0.95, paramD: 0.2 --
+-- name: "duran duran", mono: true, mode: "piano", tempo: 113, triggerPeriod: 0.125, paramC: 0.95, paramD: 0.2 --
 
 delayAmt = 0.6
 detuneAmt = paramD
@@ -339,7 +339,7 @@ oscs = 0.3 * f1 pulse + 0.7 * f2 pulse
 dry = oscs lpf12(cf: 24000 * paramC, q: 1) ad(a: 0, d: 1 beats)
 out = dry + delayAmt * dry delay(t: 0.75 beats)
   `),le.parse(`
--- name: "stranger things", octave: -2, paramA: 0.8, paramB: 0.5, tempo: 84, triggerPeriod: 0.125, noteDuration: 0.5 --
+-- name: "stranger things", octave: -2, paramA: 0.8, paramB: 0.5, tempo: 84, triggerPeriod: 0.0625, noteDuration: 0.5 --
 
 cf = 10000 adsr(a: 0.001, d: 0, s: 1, r: 0.5)
 q = (paramB norm - 0.5) abs scale(min: 0.15, max: 1)
