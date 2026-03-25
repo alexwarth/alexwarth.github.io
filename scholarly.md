@@ -83,6 +83,10 @@ Keynote Talks
 Conference / Workshop Talks and Colloquia
 -----------------------------------------
 
+[_Ambsheets: A spreadsheet for exploring scenarios_](https://www.youtube.com/watch?v=EtC2XiGFh7E). With Geoffrey Litt and Avi Bryant. LIVE, 2025.
+
+[_Inkling: Sketching Dynamic Systems_](https://www.youtube.com/watch?v=kzJIi6z7Kvc). With Marcel Goethals and Ivan Reese. LIVE, 2024.
+
 _Towards a Better Programming Experience — In the Classroom and Beyond_. Talk at University of Miami, 2017.
 
 _Prototyping Programming Languages with OMeta_. Talk at Northrop Grumman, Sacramento, CA, 2012.
