@@ -117,6 +117,8 @@ Service to the Research Community
 
 Member, [IFIP 2.16 Working Group on Language Design](http://program-transformation.org/WGLD/), 2011 - present.
 
+PC member, [Live Programming Workshop (LIVE), 2026](https://liveprog.org/)
+
 PC member, [Live Programming Workshop (LIVE), 2025](https://liveprog.org/)
 
 PC member, [Live Programming Workshop (LIVE), 2024](https://2024.splashcon.org/home/live-2024)
