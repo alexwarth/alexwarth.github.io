@@ -335,7 +335,7 @@ out = input + B * input delay(t: 0.4)
 osc1 = (noteFreq / 4) pulse
 osc2 = 300 ad(a: 0.2, d: 0.5) >> pulse(w: 0.5, sync: osc1)
 out = osc2 adsr(a: 0.05, d: 0, s: 1, r: 0.2) >> dcBlock
-  `),new ue("duran arp",{mode:"piano",mono:!0,octave:0,A:.95,B:.05,E:.06,F:.1,tempo:113,triggerPeriod:.125},`
+  `),new ue("duran arp",{mode:"piano",mono:!0,octave:0,A:.95,B:.05,E:.06,F:.07,tempo:113,triggerPeriod:.125},`
 detuneAmt = B
 portamento = (C abs - 0.2) switch2(pos: C abs, neg: 0)
 freq = (D abs - 0.5) switch2(pos: noteFreq * 2, neg: noteFreq) eglide(t: portamento)
@@ -345,10 +345,11 @@ oscs = 0.3 * f1 pulse + 0.7 * f2 pulse
 out = oscs lpf12(cf: 24000 * A, q: 0.4) ad(a: 0, d: 1 beats)
     `,`
 delayAmt = 0.35
-chorus =
+chorus = (
   input +
   input delay(t: E * 0.01 * (10 * F) sine abs)
-out = 0.5 * chorus + delayAmt * out delay(t: 0.75 beats)
+) * 0.5
+out = chorus + delayAmt * chorus delay(t: 0.75 beats)
   `),new ue("duran lead",{mode:"mpe",A:.14,B:.18,C:.469,D:.25,E:.5,F:.25,G:.5,tempo:113},`
 bend =
   (glide abs - 1.5) switch2(
