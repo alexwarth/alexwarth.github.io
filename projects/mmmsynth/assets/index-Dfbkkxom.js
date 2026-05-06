@@ -348,8 +348,8 @@ delayAmt = 0.35
 chorus =
   input +
   input delay(t: E * 0.01 * (10 * F) sine abs)
-out = chorus + delayAmt * out delay(t: 0.75 beats)
-  `),new ue("duran lead",{mode:"mpe",A:.09,B:.18,C:.469,D:.25,E:.5,F:.25,G:.5,tempo:113},`
+out = 0.5 * chorus + delayAmt * out delay(t: 0.75 beats)
+  `),new ue("duran lead",{mode:"mpe",A:.14,B:.18,C:.469,D:.25,E:.5,F:.25,G:.5,tempo:113},`
 bend =
   (glide abs - 1.5) switch2(
     pos: glide,
