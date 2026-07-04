@@ -405,7 +405,7 @@ chorus = (
   input delay(t: E * 0.01 * (10 * F) sine abs)
 ) * 0.5
 out = chorus + delayAmt * out delay(t: 0.75 beats)
-  `),new ae("duran lead",{mode:"mpe",A:.14,B:.18,C:.469,D:.25,E:.5,F:.25,G:.5,tempo:113},`
+  `),new ae("duran lead",{mode:"mpe",A:.12,B:.12,C:.469,D:.25,E:.5,F:.25,G:.5,tempo:113},`
 bend =
   (glide abs - 1.5) switch2(
     pos: glide,
@@ -427,7 +427,7 @@ cf = (A * 20000)
   + noteFreq
 out = osc
   lpf12(cf, q: 0)
-  adsr(a: 0.6, d: 0.1, s: 0.75, r: 0.5)
+  adsr(a: 0.8, d: 0.1, s: 0.75, r: 0.5)
   `,`
 // spring reverb
 reverb = (input + F * reverb) lpf(cf: 1000 * C) delay(t: D)
