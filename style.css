@@ -26,8 +26,35 @@ div.header {
   margin-bottom: 15px;
 }
 
+div.header > div.icons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 10px 0 6px;
+}
+
+div.header > div.icons a {
+  color: #583799;
+  transition: transform .15s, color .15s;
+}
+
+div.header > div.icons a:hover {
+  color: #224;
+  transform: scale(1.2);
+}
+
+div.header > div.icons svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
 div.header > div.links {
   font-size: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
 div.footer {
